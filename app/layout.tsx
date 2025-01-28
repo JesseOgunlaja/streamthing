@@ -4,6 +4,8 @@ import StateProvider from "@/components/StateProvider";
 import ToastProvider from "@/components/ToastProvider";
 import { env } from "@/lib/env";
 import { LayoutPropsType } from "@/lib/types";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { cookies, headers } from "next/headers";
@@ -56,6 +58,8 @@ export default async function RootLayout({ children }: LayoutPropsType) {
   return (
     <html lang="en">
       <body className={`${poppins.className} ${theme}-theme`}>
+        <Analytics />
+        <SpeedInsights />
         <BalancerProvider>
           <StateProvider nonce={nonce} theme={themeCookie}>
             <ToastProvider initialTheme={theme} />
