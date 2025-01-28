@@ -47,11 +47,11 @@
             opacity: 1;
           }
           40% {
-            --offset: 40%;
+            --offset: 40px;
             opacity: 0;
           }
           41% {
-            --offset: 0%;
+            --offset: 0px;
           }
         }
       }
@@ -125,10 +125,4 @@
       background: var(--computer-line);
     }
   }
-}
-
-@property --offset {
-  syntax: "<percentage>";
-  initial-value: 0%;
-  inherits: false;
 }

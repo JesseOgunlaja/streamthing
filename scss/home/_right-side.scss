@@ -66,3 +66,9 @@
   initial-value: 0px;
   inherits: false;
 }
+
+@property --offset {
+  syntax: "<length>";
+  initial-value: 0px;
+  inherits: false;
+}
