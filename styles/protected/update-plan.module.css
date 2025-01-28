@@ -1,0 +1,237 @@
+@charset "UTF-8";
+#main {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  flex-direction: column;
+  margin-top: 120px;
+  height: calc(100vh - 120px);
+}
+#main .title {
+  font-weight: 500;
+  font-size: 40px;
+  position: relative;
+  padding: 0.2em 0;
+  margin-bottom: 10px;
+  text-wrap: balance;
+  text-align: center;
+}
+#main .title span {
+  color: var(--accent-color-2);
+}
+#main dialog {
+  min-height: 100vh;
+  min-width: 100vw;
+  z-index: 900;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+#main dialog .container {
+  width: min(90vw, 500px);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: var(--auth-form-background-color);
+  border-radius: 20px;
+  color: var(--opposite-color);
+  gap: 7px;
+}
+#main dialog .container p {
+  text-align: center;
+}
+#main dialog .container p:nth-of-type(1) {
+  font-size: 18px;
+}
+#main dialog .container p.hobby-warning {
+  color: red;
+}
+#main dialog .container .payment-types {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  border: solid rgba(0, 0, 0, 0.5) 2px;
+  border-radius: 5px;
+  position: relative;
+}
+#main dialog .container .payment-types::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background: rgba(0, 0, 0, 0.5);
+  left: calc(50% + 3px);
+  top: 0;
+}
+#main dialog .container .payment-types div {
+  padding: 7.5px 20px;
+  transition: background 350ms ease-in-out;
+}
+#main dialog .container .payment-types div:has(input:checked) {
+  background: var(--nice-blue) !important;
+}
+#main dialog .container .payment-types div:has(input:checked) label {
+  color: white;
+}
+#main dialog .container .payment-types div label {
+  transition: color 350ms;
+  cursor: pointer;
+  color: var(--opposite-color);
+  font-size: 18px;
+}
+#main dialog .container .payment-types div input {
+  display: none;
+}
+#main dialog .container .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+#main dialog .container .buttons button {
+  background: var(--nice-blue);
+  color: white;
+  padding: 5px 10px;
+  font-size: 18.5px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+#main .pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(4, min(22%, 375px));
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-height: none;
+  padding: 5px;
+}
+#main .pricing-cards .pricing-card {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  max-height: 500px;
+  padding: 12.5px;
+  padding-top: 40px;
+  border-radius: 10px;
+  box-shadow: var(--pricing-card-box-shadow-color) 0px 0px 4px;
+  transition: transform 200ms;
+  animation: fade-in 300ms ease-in-out forwards 0ms;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#main .pricing-cards .pricing-card:has(.hover):hover {
+  transition-delay: none;
+  transform: scale(1.035);
+}
+#main .pricing-cards .pricing-card > svg {
+  height: 40px !important;
+  width: 40px !important;
+}
+#main .pricing-cards .pricing-card-title {
+  font-weight: 500;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+#main .pricing-cards .pricing-card-description {
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+#main .pricing-cards .pricing-card-yearly-price {
+  margin-bottom: 27px;
+  font-size: 15px;
+}
+#main .pricing-cards .pricing-card-price {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+#main .pricing-cards .pricing-card-price::before {
+  content: "£";
+  font-size: 20px;
+}
+#main .pricing-cards .pricing-card-price::after {
+  content: "/mo";
+  font-size: 16px;
+}
+@media (width < 1300px) {
+  #main .pricing-cards .pricing-card-description {
+    font-size: 12.5px;
+  }
+  #main .pricing-cards .pricing-card-title {
+    font-size: 25px;
+  }
+  #main .pricing-cards .pricing-card-price {
+    font-size: 35px;
+  }
+}
+#main .pricing-cards .pricing-card .features {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+#main .pricing-cards .pricing-card .features p {
+  font-weight: 500;
+  font-size: 17.5px;
+  align-self: flex-start;
+  margin-bottom: 0.5px;
+}
+#main .pricing-cards .pricing-card .features .feature {
+  display: flex;
+  align-items: center;
+  font-size: 14.5px;
+}
+#main .pricing-cards .pricing-card .features .feature svg {
+  height: 18px;
+  width: 18px;
+  margin-right: 7px;
+}
+#main .pricing-cards .pricing-card .features .feature-amount {
+  margin-right: 4px;
+  font-weight: 500;
+}
+@media (width < 1300px) {
+  #main .pricing-cards .pricing-card .features {
+    gap: 2px;
+  }
+  #main .pricing-cards .pricing-card .features .feature {
+    font-size: 12px;
+  }
+  #main .pricing-cards .pricing-card .features .feature svg {
+    height: 19px;
+    width: 19px;
+  }
+}
+@media (width < 1060px) {
+  #main .pricing-cards {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 95vw;
+    overflow: auto;
+  }
+  #main .pricing-cards::-webkit-scrollbar {
+    height: 0px;
+  }
+  #main .pricing-cards .pricing-card {
+    width: 100%;
+  }
+  #main .pricing-cards .pricing-card:hover {
+    transform: none;
+  }
+}

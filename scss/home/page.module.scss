@@ -1,0 +1,121 @@
+@use "./left-side" as left-side;
+@use "./right-side" as right-side;
+@use "./main-media" as main-media;
+@use "./code-media" as code-media;
+@use "./code-block" as code;
+@use "./pricing-cards" as pricing-cards;
+
+#page {
+  width: 99vw;
+  margin-top: 100px;
+  main {
+    display: flex;
+    padding: 65px 30px;
+    padding-right: 20px;
+    justify-content: center;
+    gap: 7.5vw;
+    margin-bottom: 60px;
+
+    .left-side,
+    .right-side {
+      max-width: 700px;
+      width: 45%;
+    }
+
+    .left-side {
+      @include left-side.left-side;
+    }
+    .right-side {
+      @include right-side.right-side;
+    }
+  }
+
+  .middle {
+    position: relative;
+    background: var(--home-switch-section);
+    padding: 20px 10px;
+    padding-top: 40px;
+  }
+
+  .curve {
+    path {
+      fill: var(--bg-color) !important;
+    }
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    &:last-child {
+      transform: rotate(180deg);
+      top: auto;
+      bottom: 0;
+    }
+  }
+
+  .code {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-self: center;
+    gap: 50px;
+    margin-bottom: 100px;
+
+    .codeBlock {
+      @include code.code;
+    }
+  }
+
+  .subTitle {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+    margin: 30px 0px;
+    span {
+      color: var(--accent-color-2);
+    }
+  }
+
+  img[alt="Dashboard"] {
+    margin: 20px auto;
+    margin-bottom: 45px;
+    display: flex;
+    align-self: center;
+    border-radius: 10px;
+    box-shadow: var(--navbar-box-shadow-color) 0px 0px 8px;
+    --mask: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0,
+        rgba(0, 0, 0, 1) 70%,
+        rgba(0, 0, 0, 0) 95%,
+        rgba(0, 0, 0, 0) 0
+      )
+      100% 50% / 100% 100% repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+
+    &:first-of-type {
+      display: var(--light-theme-logo-display);
+    }
+
+    &:last-of-type {
+      display: var(--dark-theme-logo-display);
+    }
+  }
+
+  .pricing-cards {
+    justify-self: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    @include pricing-cards.pricing-cards(default);
+  }
+
+  @include main-media.media;
+  @include code-media.media;
+  @media (width < 1050px) {
+    img {
+      width: 95vw;
+      height: 42.5vw;
+    }
+  }
+}

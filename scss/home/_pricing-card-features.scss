@@ -1,0 +1,41 @@
+@mixin features {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  p {
+    font-weight: 500;
+    font-size: 17.5px;
+    align-self: flex-start;
+    margin-bottom: 0.5px;
+  }
+
+  .feature {
+    display: flex;
+    align-items: center;
+    font-size: 14.5px;
+
+    svg {
+      height: 18px;
+      width: 18px;
+      margin-right: 7px;
+    }
+
+    &-amount {
+      margin-right: 4px;
+      font-weight: 500;
+    }
+  }
+
+  @media (width < 1300px) {
+    gap: 2px;
+    .feature {
+      svg {
+        height: 19px;
+        width: 19px;
+      }
+      font-size: 12px;
+    }
+  }
+}

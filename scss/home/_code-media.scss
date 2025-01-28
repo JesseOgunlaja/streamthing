@@ -1,0 +1,8 @@
+@mixin media {
+  .code {
+    @media (width < 1050px) {
+      grid-template-columns: auto;
+      width: 95vw;
+    }
+  }
+}

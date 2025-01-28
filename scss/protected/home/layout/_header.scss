@@ -1,0 +1,48 @@
+@use "./dropdown" as dropdown;
+
+@mixin header {
+  #header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      font-size: 35px;
+
+      svg {
+        height: 35px;
+        width: 35px;
+        margin-right: 15px;
+
+        &:nth-child(2) {
+          height: 30px;
+          width: 30px;
+          margin-left: 15px;
+        }
+      }
+    }
+
+    @include dropdown.dropdown;
+
+    button {
+      cursor: pointer;
+      color: white;
+      font-size: 19px;
+      padding: 12.5px;
+      border-radius: 5px;
+      background: var(--nice-blue);
+    }
+    @media (width < 600) {
+      &:not(:has(.dropdown)) {
+        h1 {
+          justify-content: center;
+        }
+        margin-bottom: 30px;
+        align-items: normal;
+        flex-direction: column;
+      }
+    }
+  }
+}

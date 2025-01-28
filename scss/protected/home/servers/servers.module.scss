@@ -1,0 +1,59 @@
+@use "./servers-popup" as servers-popup;
+
+#main {
+  margin-top: 20px;
+
+  .servers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    .server {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      border: 2px solid var(--server-card-border-color);
+      border-radius: 7.55px;
+      padding: 24px;
+      gap: 10px;
+      position: relative;
+
+      .name {
+        font-weight: 500;
+        font-size: 25px;
+      }
+
+      .region {
+        font-size: 17px;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+
+        span {
+          font-weight: 500;
+        }
+      }
+
+      & > svg {
+        position: absolute;
+        top: 23px;
+        right: 15px;
+        height: 25px;
+        width: 25px;
+        box-sizing: content-box;
+        padding: 5px;
+      }
+
+      & > svg:focus {
+        border-radius: 5px;
+        outline: var(--server-card-border-color) 2px solid;
+      }
+
+      @include servers-popup.popup;
+    }
+
+    @media (width < 700px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

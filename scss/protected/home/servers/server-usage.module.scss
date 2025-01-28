@@ -1,0 +1,45 @@
+.serverDetails {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  .usageBars {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+    .usageBar {
+      & > p {
+        font-weight: 500;
+        font-size: 19px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+    row-gap: 4px;
+    .metric {
+      font-size: 17px;
+    }
+  }
+
+  @media (width < 900px) {
+    .usageBars,
+    .metrics {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (width < 400px) {
+    .usageBars p {
+      font-size: 17px !important;
+    }
+    .metrics .metric {
+      font-size: 15px;
+    }
+  }
+}

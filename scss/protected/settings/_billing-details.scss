@@ -1,0 +1,68 @@
+@use "./method-details" as method-details;
+@use "./billing-bottom-section" as bottom-section;
+
+@mixin details {
+  .billing-details {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .payment-methods,
+    .subscription-details-container {
+      border: 1px solid var(--settings-dropdown-separator-color);
+      border-radius: 7.5px;
+      width: 70vw;
+
+      .top-section {
+        padding: 25px;
+        padding-bottom: 10px;
+
+        .method-details,
+        .subscription-details {
+          p {
+            font-size: 14px;
+          }
+        }
+
+        .section-title {
+          font-size: 19px;
+          font-weight: 600;
+          margin-bottom: 3px;
+        }
+
+        p:nth-child(2) {
+          font-size: 13px;
+        }
+      }
+
+      @include bottom-section.bottom-section;
+
+      hr {
+        margin-bottom: 10px;
+        width: max-content;
+        height: 1px;
+        background: var(--settings-dropdown-separator-color);
+      }
+
+      @media (width < 1200px) {
+        width: 90vw;
+      }
+    }
+
+    .payment-methods {
+      .top-section {
+        min-height: 220px;
+        overflow-x: auto !important;
+
+        @include method-details.method-details;
+      }
+    }
+
+    .subscription-details-container {
+      .top-section {
+        min-height: 190px;
+      }
+    }
+  }
+}

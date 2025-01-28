@@ -1,0 +1,26 @@
+.page {
+  padding: 50px;
+  width: 75vw;
+  h1 {
+    font-size: 45px;
+    font-weight: 500;
+
+    span span {
+      color: var(--accent-color-2);
+    }
+  }
+
+  p {
+    font-size: 18.25px;
+  }
+
+  a {
+    width: fit-content;
+    margin-top: 35px;
+    font-size: 35px !important;
+
+    img {
+      margin-right: 10px !important;
+    }
+  }
+}

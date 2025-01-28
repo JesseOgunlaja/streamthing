@@ -1,0 +1,76 @@
+@mixin messages {
+  & > div:nth-child(2) {
+    transform: rotate(-10deg);
+    left: 12%;
+    top: 15px;
+    position: absolute;
+
+    animation: string 200ms forwards 400ms ease;
+  }
+
+  & > div:nth-child(3) {
+    transform: rotate(6deg);
+    right: 18%;
+    top: -20px;
+    animation: json 200ms forwards 400ms ease;
+  }
+
+  & > div:nth-child(4) {
+    transform: rotate(10deg);
+    right: 15%;
+    top: 135px;
+    animation: array 200ms forwards 400ms ease;
+  }
+
+  & > div:has(:first-child:is(span)):not(:first-of-type) {
+    span {
+      position: relative;
+      &::before {
+        position: absolute;
+        z-index: -1;
+        content: "";
+        top: calc(var(--svg-offset) / -1 + 15%);
+        left: calc(var(--svg-offset) / -1 + 20%);
+        border-radius: 10px;
+        height: 65%;
+        width: 60%;
+        border: var(--svg-offset) var(--nice-blue) solid;
+        animation: expandOffset 3000ms infinite forwards 100ms;
+
+        @keyframes expandOffset {
+          0% {
+            opacity: 1;
+          }
+          41% {
+            --svg-offset: 20px;
+            opacity: 0;
+          }
+          42% {
+            --svg-offset: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes string {
+    to {
+      left: 15.5%;
+      top: 30px;
+    }
+  }
+
+  @keyframes json {
+    to {
+      right: 25%;
+      top: -17px;
+    }
+  }
+
+  @keyframes array {
+    to {
+      right: 20%;
+      top: 125px;
+    }
+  }
+}

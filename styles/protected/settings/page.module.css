@@ -1,0 +1,394 @@
+.page {
+  padding: 20px;
+  min-height: calc(100vh - 130px);
+  display: flex;
+  gap: 20px;
+  margin-top: 80px;
+  margin-left: 25px;
+}
+.page h1 {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  margin-top: 15px;
+}
+.page h1 svg {
+  display: none;
+}
+.page h1 svg:focus {
+  outline: none;
+}
+@media (width < 1200px) {
+  .page {
+    margin-left: 0px;
+  }
+  .page h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .page h1 svg {
+    display: block;
+    height: 31px;
+    width: 31px;
+    cursor: pointer;
+  }
+}
+.page #authentication .sections,
+.page #general .sections {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.page #authentication .sections .section,
+.page #general .sections .section {
+  border: 1px solid var(--settings-dropdown-separator-color);
+  border-radius: 7.5px;
+  width: 70vw;
+}
+.page #authentication .sections .section#delete-account,
+.page #general .sections .section#delete-account {
+  position: relative;
+  padding-bottom: 3px;
+  border: 1px solid rgb(218, 47, 53);
+  padding-right: 10px;
+}
+.page #authentication .sections .section#delete-account .main-section > button,
+.page #general .sections .section#delete-account .main-section > button {
+  background: rgb(218, 47, 53);
+  padding: 5px 11px;
+  border-radius: 5px;
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+.page #authentication .sections .section .section-title,
+.page #general .sections .section .section-title {
+  font-size: 16.25px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.page #authentication .sections .section .section-description,
+.page #general .sections .section .section-description {
+  font-size: 14.5px;
+  margin-bottom: 10px;
+}
+.page #authentication .sections .section .main-section,
+.page #general .sections .section .main-section {
+  padding: 20px;
+  padding-bottom: 10px;
+  position: relative;
+}
+.page #authentication .sections .section .main-section .linked-account,
+.page #general .sections .section .main-section .linked-account {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--settings-dropdown-separator-color);
+  border-radius: 7.5px;
+  gap: 20px;
+  font-size: 14.5px;
+}
+.page #authentication .sections .section .main-section .linked-account a,
+.page #authentication .sections .section .main-section .linked-account button,
+.page #general .sections .section .main-section .linked-account a,
+.page #general .sections .section .main-section .linked-account button {
+  font-size: 15.5px;
+  background: var(--nice-blue);
+  color: white;
+  border-radius: 5px;
+  margin-left: auto;
+  padding: 5px 11px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.page #authentication .sections .section .main-section form,
+.page #general .sections .section .main-section form {
+  display: flex;
+  flex-direction: column;
+}
+.page #authentication .sections .section .main-section form input,
+.page #general .sections .section .main-section form input {
+  outline: 1px solid var(--settings-dropdown-separator-color);
+  color: var(--security-settings-input-color);
+  width: 300px;
+  padding: 8px 7.5px;
+  border-radius: 5px;
+  margin-bottom: 10px !important;
+  background: none;
+  transition: outline 150ms ease-in;
+}
+.page #authentication .sections .section .main-section form input:focus,
+.page #general .sections .section .main-section form input:focus {
+  outline: 2px solid var(--opposite-color);
+}
+.page #authentication .sections .section .main-section form label,
+.page #authentication .sections .section .main-section form input,
+.page #general .sections .section .main-section form label,
+.page #general .sections .section .main-section form input {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.page #authentication .sections .section .main-section:has(img),
+.page #general .sections .section .main-section:has(img) {
+  padding-bottom: 30px;
+}
+.page #authentication .sections .section .main-section:has(img) .section-description,
+.page #general .sections .section .main-section:has(img) .section-description {
+  width: calc(100% - 85px);
+}
+.page #authentication .sections .section .main-section .upload-button,
+.page #general .sections .section .main-section .upload-button {
+  height: 75px;
+  width: 75px;
+  position: absolute;
+  border-radius: 50%;
+  top: 20px;
+  right: 20px;
+  opacity: 0;
+  gap: 0px;
+  z-index: 100000;
+  flex-direction: row;
+}
+.page #authentication .sections .section .main-section .upload-button label,
+.page #general .sections .section .main-section .upload-button label {
+  height: inherit;
+  width: inherit;
+  border-radius: inherit;
+}
+.page #authentication .sections .section .main-section .upload-button div,
+.page #general .sections .section .main-section .upload-button div {
+  width: 0px;
+}
+.page #authentication .sections .section .main-section img,
+.page #general .sections .section .main-section img {
+  position: absolute;
+  top: 20px;
+  border-radius: 50%;
+  right: 20px;
+}
+.page #authentication .sections .section hr,
+.page #general .sections .section hr {
+  margin-bottom: 5px;
+  margin-top: 7.5px;
+  width: 100%;
+  height: 1px;
+  background: var(--settings-dropdown-separator-color);
+}
+.page #authentication .sections .section .footer,
+.page #general .sections .section .footer {
+  padding: 7.5px 15px;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  align-items: center;
+}
+.page #authentication .sections .section .footer p,
+.page #authentication .sections .section .footer button,
+.page #general .sections .section .footer p,
+.page #general .sections .section .footer button {
+  padding: 5px 11px;
+  border-radius: 5px;
+}
+.page #authentication .sections .section .footer button,
+.page #general .sections .section .footer button {
+  color: white;
+  background: var(--nice-blue);
+  font-size: 15px;
+  cursor: pointer;
+}
+@media (width < 1200px) {
+  .page #authentication .sections .section,
+  .page #general .sections .section {
+    width: 90vw;
+  }
+}
+.page #billing .billing-details {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.page #billing .billing-details .payment-methods,
+.page #billing .billing-details .subscription-details-container {
+  border: 1px solid var(--settings-dropdown-separator-color);
+  border-radius: 7.5px;
+  width: 70vw;
+}
+.page #billing .billing-details .payment-methods .top-section,
+.page #billing .billing-details .subscription-details-container .top-section {
+  padding: 25px;
+  padding-bottom: 10px;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details p,
+.page #billing .billing-details .payment-methods .top-section .subscription-details p,
+.page #billing .billing-details .subscription-details-container .top-section .method-details p,
+.page #billing .billing-details .subscription-details-container .top-section .subscription-details p {
+  font-size: 14px;
+}
+.page #billing .billing-details .payment-methods .top-section .section-title,
+.page #billing .billing-details .subscription-details-container .top-section .section-title {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.page #billing .billing-details .payment-methods .top-section p:nth-child(2),
+.page #billing .billing-details .subscription-details-container .top-section p:nth-child(2) {
+  font-size: 13px;
+}
+.page #billing .billing-details .payment-methods .bottom-section > p,
+.page #billing .billing-details .subscription-details-container .bottom-section > p {
+  padding: 7.5px 15px;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  align-items: center;
+}
+.page #billing .billing-details .payment-methods .bottom-section > p a,
+.page #billing .billing-details .payment-methods .bottom-section > p button,
+.page #billing .billing-details .payment-methods .bottom-section > p span,
+.page #billing .billing-details .subscription-details-container .bottom-section > p a,
+.page #billing .billing-details .subscription-details-container .bottom-section > p button,
+.page #billing .billing-details .subscription-details-container .bottom-section > p span {
+  background: var(--nice-blue);
+  padding: 5px 11px;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+}
+.page #billing .billing-details .payment-methods .bottom-section > p span,
+.page #billing .billing-details .subscription-details-container .bottom-section > p span {
+  cursor: not-allowed;
+}
+.page #billing .billing-details .payment-methods .bottom-section > p a,
+.page #billing .billing-details .payment-methods .bottom-section > p button,
+.page #billing .billing-details .subscription-details-container .bottom-section > p a,
+.page #billing .billing-details .subscription-details-container .bottom-section > p button {
+  font-size: 15px;
+  cursor: pointer;
+}
+.page #billing .billing-details .payment-methods .bottom-section hr,
+.page #billing .billing-details .subscription-details-container .bottom-section hr {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.page #billing .billing-details .payment-methods hr,
+.page #billing .billing-details .subscription-details-container hr {
+  margin-bottom: 10px;
+  width: max-content;
+  height: 1px;
+  background: var(--settings-dropdown-separator-color);
+}
+@media (width < 1200px) {
+  .page #billing .billing-details .payment-methods,
+  .page #billing .billing-details .subscription-details-container {
+    width: 90vw;
+  }
+}
+.page #billing .billing-details .payment-methods .top-section {
+  min-height: 220px;
+  overflow-x: auto !important;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details {
+  align-items: center;
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 7px;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details-wrapper {
+  display: grid;
+  min-width: 100%;
+  width: max-content;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details:not(:last-of-type) {
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--settings-dropdown-separator-color);
+}
+.page #billing .billing-details .payment-methods .top-section .method-details svg {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details svg:last-child {
+  height: 26px;
+  width: 26px;
+  padding: 5px;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details p#active-method {
+  background: var(--payment-method-active-bg-color);
+  border-radius: 15px;
+  padding: 4px 9px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7.5px;
+  font-weight: 500;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details p#active-method svg {
+  stroke: var(--payment-method-active-check-color);
+  background: var(--payment-method-active-check-bg-color);
+  height: 15.5px;
+  width: 15.5px;
+  border-radius: 50%;
+  cursor: default;
+  padding: 2.25px;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details p:nth-last-child(3) {
+  margin-left: auto;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details > :nth-last-child(2):focus {
+  border-radius: 5px;
+  outline: var(--server-card-border-color) 2px solid;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details > :nth-last-child(2):focus + .dropdown {
+  display: flex;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details .dropdown {
+  position: absolute;
+  display: none;
+  width: max-content;
+  background: var(--server-popup-bg-color);
+  right: 20px;
+  top: 30px;
+  z-index: 100;
+  flex-direction: column;
+  border: 1.5px solid var(--server-card-border-color);
+  border-radius: 6px;
+  padding: 7px 10px;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details .dropdown:hover {
+  display: flex;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details .dropdown button {
+  padding: 5px 9px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  background: inherit;
+  color: inherit;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details .dropdown button:last-child {
+  color: red;
+}
+.page #billing .billing-details .payment-methods .top-section .method-details .dropdown button:hover {
+  background: var(--server-popup-hover-bg-color);
+}
+.page #billing .billing-details .subscription-details-container .top-section {
+  min-height: 190px;
+}
+.page #billing .skeleton {
+  height: 30px;
+}
+.page #billing .skeleton > * {
+  --base-color: var(--skeleton-base-color) !important;
+  --highlight-color: var(--skeleton-highlight-color) !important;
+  --pseudo-element-display: block !important;
+}

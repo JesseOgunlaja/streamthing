@@ -1,0 +1,38 @@
+#main {
+  height: calc(100vh - 130px);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 80px;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 560px;
+    gap: 20px;
+    text-align: center;
+    svg {
+      height: 80px;
+      width: 80px;
+    }
+    p {
+      font-size: 18.5px;
+      text-align: center;
+      span {
+        font-weight: bold;
+      }
+    }
+    button {
+      cursor: pointer;
+      padding: 10px 20px;
+      font-size: 21.5px;
+      background: var(--nice-blue);
+      color: white;
+      border-radius: 5px;
+    }
+  }
+}

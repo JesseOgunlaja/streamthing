@@ -1,0 +1,25 @@
+#link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 50px;
+
+  span {
+    color: var(--accent-color-2);
+  }
+
+  img {
+    margin-right: 5px;
+    display: none !important;
+  }
+
+  #light-theme-logo {
+    display: var(--light-theme-logo-display);
+  }
+
+  #dark-theme-logo {
+    display: var(--dark-theme-logo-display);
+  }
+}

@@ -1,0 +1,47 @@
+@mixin settings-with-form {
+  &:has(form) {
+    form {
+      input {
+        padding: 6.5px;
+        font-size: 16px;
+        width: 100%;
+        color: var(--auth-form-input-font-color);
+        background: none;
+        border: 1.5px solid var(--auth-form-border-color);
+        border-radius: 6px;
+      }
+
+      label {
+        align-self: flex-start;
+        width: fit-content;
+        color: var(--server-rename-label-color);
+        padding: 0px;
+        margin-left: 2.5px;
+        margin-bottom: 8px;
+        font-size: 18px;
+      }
+
+      .buttons {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          background: var(--nice-blue);
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-weight: 500;
+          font-size: 18.5px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

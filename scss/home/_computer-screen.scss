@@ -1,0 +1,134 @@
+@mixin computer {
+  & > div:nth-of-type(5) {
+    position: absolute;
+    left: calc(50% - 500px / 2);
+    bottom: -60px;
+    width: 500px;
+    height: 300px;
+    border-radius: 10px;
+    padding: 20px;
+    background: rgb(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    div > :last-child {
+      position: absolute;
+      bottom: -30px;
+      background: var(--nice-blue);
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      border-radius: 20px;
+      padding: 3px 10px;
+    }
+
+    & > div:has(> :last-child) {
+      align-items: center !important;
+      position: absolute;
+      border-radius: 10px;
+      background: var(--computer-tab-bg);
+      display: flex;
+      flex-direction: column;
+      &::before {
+        position: absolute;
+        top: calc(var(--offset) / -1);
+        left: calc(var(--offset) / -2);
+        border-radius: 10px;
+        content: "";
+        background: var(--nice-blue);
+        height: calc(100% + var(--offset) * 2);
+        width: calc(100% + var(--offset));
+        z-index: -1;
+
+        @keyframes expand {
+          0% {
+            opacity: 1;
+          }
+          40% {
+            --offset: 40%;
+            opacity: 0;
+          }
+          41% {
+            --offset: 0%;
+          }
+        }
+      }
+    }
+
+    .status {
+      top: 65px;
+      left: 45px;
+      color: var(--bg-color);
+      align-self: center;
+      padding: 10px;
+
+      &::before {
+        animation: expand 3000ms infinite forwards 1000ms;
+      }
+      p:nth-child(1) {
+        font-size: 20px;
+        text-align: center;
+        align-self: center;
+      }
+    }
+
+    .messages {
+      top: 65px;
+      right: 45px;
+      background: rgb(50, 50, 50);
+      padding: 15px;
+      gap: 5px;
+
+      width: 140px;
+      &::before {
+        animation: expand 3000ms infinite forwards 1500ms;
+      }
+
+      .message {
+        width: 55%;
+        height: 13px;
+        border-radius: 5px;
+
+        &:nth-of-type(even) {
+          align-self: flex-start;
+          background: darkgreen;
+        }
+        &:nth-of-type(odd) {
+          align-self: flex-end;
+          background: var(--bg-color-light);
+        }
+      }
+    }
+
+    .topLine {
+      position: absolute;
+      width: 100%;
+      top: 30px;
+      height: 1px;
+      background: rgb(100, 100, 100, 0.2);
+    }
+    .line {
+      position: absolute;
+      @for $i from 4 through 11 {
+        &:nth-of-type(#{$i}) {
+          top: calc((#{$i} - 2) * 27px - 7.5px);
+        }
+      }
+      left: 5%;
+      width: 90%;
+      height: 17px;
+      transform: translateY(10px);
+      z-index: -1;
+      border-radius: 5px;
+      background: var(--computer-line);
+    }
+  }
+}
+
+@property --offset {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}

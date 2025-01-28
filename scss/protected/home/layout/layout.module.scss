@@ -1,0 +1,23 @@
+@use "./nav" as nav;
+@use "./dialog" as dialog;
+@use "./header" as header;
+
+#page {
+  min-height: calc(100vh - 130px);
+  padding: 50px;
+  width: min(100vw, 1250px);
+  margin: 0 auto;
+  margin-top: 80px;
+
+  @include header.header;
+  @include dialog.dialog;
+  @include nav.nav;
+
+  @media (width < 600px) {
+    padding: 20px;
+  }
+
+  @media (width < 500px) {
+    min-height: calc(100vh - 155px);
+  }
+}

@@ -1,0 +1,23 @@
+.link {
+  background: var(--opposite-color);
+  display: flex;
+  padding: 10px;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: white;
+  border-radius: 3.5px;
+  margin-bottom: 15px;
+
+  p {
+    font-weight: 600;
+    color: var(--bg-color) !important;
+    font-size: 16.5px;
+  }
+
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+}

@@ -1,0 +1,35 @@
+@use "./navbar-media" as media;
+
+#nav {
+  margin-top: 100px;
+  margin-right: 100px;
+  position: relative;
+
+  ul {
+    position: sticky;
+    display: flex;
+    top: 100px;
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+    list-style: none;
+
+    li {
+      text-align: center;
+      font-style: none;
+      padding-left: 10px;
+
+      &.active {
+        border-left: 2px solid var(--dashboard-navbar-border-color-active);
+      }
+
+      a {
+        display: flex;
+        font-size: 17px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  @include media.media;
+}

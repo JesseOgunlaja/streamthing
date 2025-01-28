@@ -1,0 +1,65 @@
+@mixin dark-theme() {
+  --color-scheme: dark;
+
+  --bg-color: rgb(34, 34, 34);
+  --bg-color-light: rgb(42, 42, 42);
+  --opposite-color: rgb(237, 237, 237);
+  --accent-color: rgb(146, 190, 251);
+  --accent-color-2: rgb(254, 155, 254);
+
+  --light-theme-logo-display: none;
+  --dark-theme-logo-display: block;
+  --navbar-box-shadow-color: rgba(150, 150, 150, 0.07);
+
+  --code-background: rgb(50, 50, 50);
+  --code-title-background: rgb(30, 30, 30);
+  --code-block-background: rgb(40, 40, 40);
+
+  --pricing-card-box-shadow-color: rgba(255, 255, 255, 0.65);
+  --mobile-navbar-border-bottom-color: rgba(50, 50, 50, 0.75);
+  --mobile-navbar-theme-toggle-background-color: rgba(65, 65, 65, 0.8);
+  --mobile-navbar-theme-toggle-color: rgb(185, 185, 185);
+
+  --auth-form-input-background-color: rgb(60, 60, 60);
+  --auth-form-border-color: rgb(50, 50, 50);
+  --auth-form-background-color: rgb(40, 40, 40);
+  --auth-form-input-font-color: rgba(255, 255, 255, 0.7);
+  --auth-form-separator-color: rgba(95, 95, 95, 0.2);
+
+  --footer-font-color: rgb(166, 166, 175);
+  --footer-background-color: #2a2a2a;
+
+  --dashboard-navbar-border-color: rgb(50, 50, 50);
+  --dashboard-navbar-border-color-active: white;
+  --server-card-border-color: rgb(50, 50, 50);
+  --server-popup-bg-color: rgb(42, 42, 42);
+  --server-popup-hover-bg-color: rgb(52, 52, 52);
+  --server-credentials-border: rgba(255, 255, 255, 0.25);
+  --server-usage-bar: rgb(50, 50, 50);
+  --server-rename-label-color: rgb(200, 200, 200);
+
+  --billing-table-border-color: rgb(102, 102, 102);
+  --billing-table-border-color-dark: rgb(51, 51, 51);
+  --billing-table-hover-color: rgb(40, 40, 40);
+
+  --toggle-theme-bg-color: rgb(40, 40, 40);
+  --toggle-theme-ball-color: rgb(26, 26, 26);
+
+  --payment-method-active-bg-color: #1d406e;
+  --payment-method-active-check-bg-color: rgb(0, 116, 212);
+  --payment-method-active-check-color: black;
+
+  --scrollbar-thumb-color: #676767;
+  --security-settings-input-color: rgba(255, 255, 255, 0.7);
+
+  --skeleton-base-color: #2a2a2a;
+  --skeleton-highlight-color: #3c3c3c;
+
+  --settings-dropdown-separator-color: rgba(255, 255, 255, 0.2);
+  --disclaimer-color: rgb(170, 170, 170, 0.9);
+  --mobile-settings-navbar-box-shadow-color: rgba(35, 35, 35, 0.35);
+  --home-switch-section: #1e1e1e;
+  --computer-line: rgba(220, 220, 220, 0.06);
+  --computer-tab-bg: rgb(220, 220, 220);
+  --code-filename-bg: rgb(30, 33, 37);
+}

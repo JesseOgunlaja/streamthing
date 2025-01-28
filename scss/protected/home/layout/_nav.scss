@@ -1,0 +1,28 @@
+@mixin nav {
+  #nav {
+    position: relative;
+    margin-top: 10px;
+    border-bottom: 1px solid var(--dashboard-navbar-border-color);
+
+    ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+
+      li {
+        padding-bottom: 10px;
+        text-align: center;
+        font-style: none;
+
+        &.active {
+          border-bottom: 2px solid var(--dashboard-navbar-border-color-active);
+        }
+
+        a {
+          display: flex;
+          font-size: 18.5px;
+        }
+      }
+    }
+  }
+}

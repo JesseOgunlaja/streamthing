@@ -1,0 +1,16 @@
+@use "./billing-details" as billing-details;
+
+@mixin billing {
+  #billing {
+    @include billing-details.details;
+
+    .skeleton {
+      height: 30px;
+      & > * {
+        --base-color: var(--skeleton-base-color) !important;
+        --highlight-color: var(--skeleton-highlight-color) !important;
+        --pseudo-element-display: block !important;
+      }
+    }
+  }
+}

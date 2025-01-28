@@ -1,0 +1,56 @@
+"use client";
+
+import { resetPassword } from "@/actions/auth/reset-password";
+import { promiseToast } from "@/lib/lib";
+import { FormSubmit } from "@/lib/types";
+import { getFormValues } from "@/lib/utils";
+import styles from "@/styles/auth-form.module.css";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+interface PropsType {
+  code: string;
+  email: string;
+}
+
+const ResetPasswordForm = ({ code, email }: PropsType) => {
+  const router = useRouter();
+  const [pending, setPending] = useState(false);
+
+  async function formSubmit(e: FormSubmit) {
+    e.preventDefault();
+
+    if (pending) return;
+    setPending(true);
+
+    const formValues = getFormValues(e);
+    const promise = new Promise((resolve, reject) => {
+      resetPassword(code, email, formValues.password).then((data) => {
+        const { message, ok } = data;
+
+        if (ok) resolve(message);
+        else reject(message);
+      });
+    });
+
+    promiseToast(promise, {
+      successFunction: () => router.push("/dashboard"),
+      errorFunction: () => setPending(false),
+    });
+  }
+
+  return (
+    <form onSubmit={formSubmit} className={styles.form}>
+      <label htmlFor="reset-password-new-password">New password</label>
+      <input
+        id="reset-password-new-password"
+        name="password"
+        placeholder="•••••••••"
+        type="password"
+      />
+      <input value="Submit" type="submit" />
+    </form>
+  );
+};
+
+export default ResetPasswordForm;

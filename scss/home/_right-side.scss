@@ -1,0 +1,68 @@
+@use "./computer-screen" as computer;
+@use "./websocket-messages" as messages;
+
+@mixin right-side {
+  display: flex;
+  position: relative;
+  width: 566px;
+  height: 500px;
+  justify-content: center;
+  padding-top: 50px;
+
+  & > div:not(:nth-child(1)) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    svg {
+      stroke-width: 1.5px;
+      height: 85px;
+      width: 85px;
+      &:first-child {
+        fill: var(--bg-color);
+      }
+    }
+    & > p {
+      margin-top: 10px;
+      background: var(--nice-blue);
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      border-radius: 20px;
+      padding: 3px 10px;
+    }
+  }
+
+  & > div:nth-child(1) {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    background: var(--server-usage-bar);
+    justify-content: center;
+    padding: 27.5px 37.5px;
+    font-size: 18px;
+    height: fit-content;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 5px;
+    svg {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  @include messages.messages;
+  @include computer.computer;
+
+  canvas {
+    position: absolute;
+    top: 170px;
+    left: calc(50% - 240px / 2);
+  }
+}
+
+@property --svg-offset {
+  syntax: "<length>";
+  initial-value: 0px;
+  inherits: false;
+}

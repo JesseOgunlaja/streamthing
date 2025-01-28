@@ -1,0 +1,45 @@
+@use "./mobile-navbar-items" as navbar-items;
+
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  background: var(--bg-color);
+  height: 80px;
+
+  .top-bar {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+
+    #hamburger-menu {
+      margin-right: 20px;
+    }
+
+    & > li {
+      text-align: center;
+      float: left;
+      font-style: none;
+      padding: 10px;
+      z-index: 10;
+
+      & > a {
+        display: flex;
+        font-size: 23px;
+      }
+    }
+  }
+
+  .navbar-items {
+    @include navbar-items.navbar-items;
+    background: var(--bg-color-light);
+  }
+
+  @media (width > 999px) {
+    display: none;
+  }
+}

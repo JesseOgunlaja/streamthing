@@ -1,0 +1,63 @@
+@use "./left-side-media" as media;
+
+@mixin left-side {
+  .slogan {
+    border-radius: 100px;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid var(--accent-color);
+    width: fit-content;
+    background-size: cover;
+    --mask: radial-gradient(circle at bottom right, transparent 0%, black 8.5%);
+    -webkit-mask-image: var(--mask);
+    mask-image: var(--mask);
+  }
+  .descriptions-container {
+    .big-description {
+      font-size: 55px;
+      font-weight: 500;
+      width: 97%;
+
+      span span {
+        color: var(--accent-color-2);
+      }
+    }
+    .small-description {
+      font-size: 20.5px;
+    }
+  }
+  .get-started-text {
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .buttons {
+    display: flex;
+    margin-top: 12px;
+    gap: 18.5px;
+    & > * {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-align: center;
+    }
+
+    .get-started-button {
+      color: white;
+      background: var(--nice-blue);
+    }
+
+    .documentation {
+      display: flex;
+      align-items: center;
+      border: var(--accent-color) solid 2px;
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  @include media.media;
+}

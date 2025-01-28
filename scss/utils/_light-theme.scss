@@ -1,0 +1,65 @@
+@mixin light-theme() {
+  --color-scheme: light;
+
+  --bg-color: white;
+  --bg-color-light: rgb(230, 230, 230);
+  --opposite-color: rgb(30, 30, 30);
+  --accent-color: rgb(0, 80, 145);
+  --accent-color-2: purple;
+
+  --light-theme-logo-display: block;
+  --dark-theme-logo-display: none;
+  --navbar-box-shadow-color: rgba(45, 45, 45, 0.07);
+
+  --code-background: rgb(51, 53, 62);
+  --code-title-background: rgb(36, 38, 47);
+  --code-block-background: rgb(26, 28, 37);
+
+  --pricing-card-box-shadow-color: rgba(0, 0, 0, 0.65);
+  --mobile-navbar-border-bottom-color: rgba(220, 220, 220, 0.8);
+  --mobile-navbar-theme-toggle-background-color: rgba(210, 210, 210, 0.8);
+  --mobile-navbar-theme-toggle-color: rgba(40, 40, 40, 0.85);
+
+  --auth-form-input-background-color: rgb(200, 200, 200);
+  --auth-form-border-color: rgb(215, 215, 215);
+  --auth-form-background-color: rgb(253, 253, 253);
+  --auth-form-input-font-color: rgba(0, 0, 0, 0.7);
+  --auth-form-separator-color: rgba(190, 190, 190, 0.2);
+
+  --footer-font-color: rgb(55, 55, 55);
+  --footer-background-color: rgb(238, 238, 245);
+
+  --dashboard-navbar-border-color: rgb(220, 220, 220);
+  --dashboard-navbar-border-color-active: black;
+  --server-card-border-color: rgb(220, 220, 220);
+  --server-popup-bg-color: rgb(255, 255, 255);
+  --server-popup-hover-bg-color: rgb(239, 239, 239);
+  --server-credentials-border: rgba(0, 0, 0, 0.5);
+  --server-usage-bar: rgb(230, 230, 230);
+  --server-rename-label-color: rgb(50, 50, 50);
+
+  --billing-table-border-color: #999;
+  --billing-table-border-color-dark: #666;
+  --billing-table-hover-color: #eee;
+
+  --toggle-theme-bg-color: rgb(220, 220, 220);
+  --toggle-theme-ball-color: white;
+
+  --payment-method-active-bg-color: #dceeff;
+  --payment-method-active-check-bg-color: rgb(0, 116, 212);
+  --payment-method-active-check-color: white;
+
+  --scrollbar-thumb-color: rgb(180, 180, 180);
+  --security-settings-input-color: rgba(0, 0, 0, 0.7);
+
+  --skeleton-base-color: #cdcdcd;
+  --skeleton-highlight-color: #ededed;
+
+  --settings-dropdown-separator-color: rgba(0, 0, 0, 0.2);
+  --disclaimer-color: rgb(80, 80, 80, 0.9);
+  --mobile-settings-navbar-box-shadow-color: rgba(110, 110, 110, 0.575);
+  --home-switch-section: #f5f5f5;
+  --computer-line: rgba(0, 0, 0, 0.06);
+  --computer-tab-bg: rgb(50, 50, 50);
+  --code-filename-bg: rgb(200, 200, 200);
+}

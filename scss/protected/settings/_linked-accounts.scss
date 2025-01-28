@@ -1,0 +1,23 @@
+@mixin linked-accounts {
+  .linked-account {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--settings-dropdown-separator-color);
+    border-radius: 7.5px;
+    gap: 20px;
+    font-size: 14.5px;
+
+    a,
+    button {
+      font-size: 15.5px;
+      background: var(--nice-blue);
+      color: white;
+      border-radius: 5px;
+      margin-left: auto;
+      padding: 5px 11px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  }
+}

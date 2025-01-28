@@ -1,0 +1,73 @@
+@use "./linked-accounts" as linked-accounts;
+
+@mixin main-section {
+  padding: 20px;
+  padding-bottom: 10px;
+  position: relative;
+
+  @include linked-accounts.linked-accounts;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      outline: 1px solid var(--settings-dropdown-separator-color);
+      color: var(--security-settings-input-color);
+      width: 300px;
+      padding: 8px 7.5px;
+      border-radius: 5px;
+      margin-bottom: 10px !important;
+      background: none;
+      transition: outline 150ms ease-in;
+
+      &:focus {
+        outline: 2px solid var(--opposite-color);
+      }
+    }
+
+    label,
+    input {
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+  }
+
+  &:has(img) {
+    padding-bottom: 30px;
+
+    .section-description {
+      width: calc(100% - 85px);
+    }
+  }
+
+  .upload-button {
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    border-radius: 50%;
+    top: 20px;
+    right: 20px;
+    opacity: 0;
+    gap: 0px;
+    z-index: 100000;
+    flex-direction: row;
+
+    label {
+      height: inherit;
+      width: inherit;
+      border-radius: inherit;
+    }
+
+    div {
+      width: 0px;
+    }
+  }
+
+  img {
+    position: absolute;
+    top: 20px;
+    border-radius: 50%;
+    right: 20px;
+  }
+}

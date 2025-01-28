@@ -1,0 +1,27 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: var(--bg-color);
+  width: 100vw;
+}
+.nav > ul {
+  padding: 3px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+.nav > ul > li {
+  text-align: center;
+  font-style: none;
+  padding: 10px;
+  z-index: 10;
+  float: left;
+  width: fit-content;
+}
+.nav > ul > li a {
+  display: flex;
+  font-size: 23px;
+}

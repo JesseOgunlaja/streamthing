@@ -1,0 +1,54 @@
+.nav {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  z-index: 1000;
+  background: var(--bg-color);
+  width: calc(100% - 10px);
+}
+.nav > ul {
+  padding: 3px 10px;
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+.nav > ul #toggle-theme {
+  margin-left: auto;
+  margin-right: 0;
+  padding-right: 0px;
+}
+.nav > ul #sign-in {
+  background: var(--nice-blue);
+  border-radius: 50px;
+  padding: 8px 18px;
+}
+.nav > ul #sign-in a {
+  font-weight: 500;
+  font-size: 18px;
+  color: #eee;
+}
+.nav > ul #separator {
+  margin: 0 0.75vw;
+}
+.nav > ul #separator hr {
+  width: 1.75px;
+  height: 45px;
+  opacity: 0.35;
+  background: var(--opposite-color);
+}
+.nav > ul > li {
+  text-align: center;
+  float: left;
+  font-style: none;
+  padding: 10px;
+  z-index: 10;
+}
+.nav > ul > li a {
+  display: flex;
+  font-size: 19px;
+}
+@media (width < 1000px) {
+  .nav {
+    display: none;
+  }
+}

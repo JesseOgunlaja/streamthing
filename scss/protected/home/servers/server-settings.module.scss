@@ -1,0 +1,28 @@
+@use "./settings-without-form" as settings-without-form;
+@use "./settings-with-form" as settings-with-form;
+
+.dialog {
+  min-height: 100vh;
+  min-width: 100vw;
+  z-index: 900;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  .container,
+  form {
+    width: min(90vw, 480px);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: var(--auth-form-background-color);
+    border-radius: 20px;
+  }
+
+  @include settings-without-form.settings-without-form;
+  @include settings-with-form.settings-with-form;
+}

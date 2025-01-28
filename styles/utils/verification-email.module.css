@@ -1,0 +1,36 @@
+#main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#main .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 565px;
+  gap: 20px;
+  text-align: center;
+}
+#main .container svg {
+  height: 80px;
+  width: 80px;
+}
+#main .container p {
+  font-size: 18.5px;
+  text-align: center;
+}
+#main .container p span:not(:has(+ script)) {
+  font-weight: bold;
+}
+#main .container a {
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 21.5px;
+  background: var(--nice-blue);
+  color: white;
+  border-radius: 5px;
+}

@@ -1,0 +1,76 @@
+@mixin dialog {
+  & > dialog {
+    height: 100vh;
+    width: 100vw;
+    z-index: 900;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    & > form {
+      width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background: var(--auth-form-background-color);
+      border-radius: 20px;
+
+      p {
+        color: var(--auth-form-input-font-color);
+        font-size: 20px;
+      }
+
+      .buttons {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 35px;
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          background: var(--nice-blue);
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-weight: 500;
+          font-size: 18.5px;
+          cursor: pointer;
+        }
+      }
+
+      input,
+      label,
+      select {
+        padding: 6.5px;
+        font-size: 16px;
+        width: 100%;
+        color: var(--auth-form-input-font-color);
+      }
+
+      input,
+      select {
+        background: none;
+        border: 1.5px solid var(--auth-form-border-color);
+        border-radius: 6px;
+      }
+
+      select {
+        background: url("data:image/svg+xml;utf8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M3.05669%206.97869L8.00002%2012L12.9434%206.97869C13.4627%206.45069%2013.4627%205.59135%2012.9434%205.06335C12.424%204.53535%2011.5774%204.53535%2011.0574%205.06335L8.00002%208.16936L4.94202%205.06335C4.69002%204.80735%204.35535%204.66669%203.99935%204.66669C3.64335%204.66669%203.30869%204.80735%203.05669%205.06335C2.53669%205.59135%202.53669%206.45135%203.05669%206.97869Z%22%20fill%3D%22%23a3aacc%22%2F%3E%0A%3C%2Fsvg%3E%0A");
+        background-size: 23px;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 6px);
+        -webkit-appearance: none;
+        appearance: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
+
+export const env = createEnv({
+  client: {
+    NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID: z.string(),
+    NEXT_PUBLIC_GITHUB_OAUTH_SCOPES: z.string(),
+    NEXT_PUBLIC_STRIPE_PUBLIC_KEY: z.string(),
+    NEXT_PUBLIC_ENCRYPTION_KEY: z.string(),
+    NEXT_PUBLIC_BASE_URL: z.string(),
+  },
+  server: {
+    GITHUB_OAUTH_SECRET: z.string(),
+    REDIS_URL: z.string().url(),
+    REDIS_TOKEN: z.string(),
+    REDIS_RATELIMIT_URL: z.string().url(),
+    REDIS_RATELIMIT_TOKEN: z.string(),
+    REDIS_STRIPE_URL: z.string().url(),
+    REDIS_STRIPE_TOKEN: z.string(),
+    REDIS_TEMP_URL: z.string().url(),
+    REDIS_TEMP_TOKEN: z.string(),
+    REDIS_SESSIONS_URL: z.string(),
+    REDIS_SESSIONS_TOKEN: z.string(),
+    JWT_SIGNING_KEY: z.string(),
+    RESEND_API_KEY: z.string(),
+    STRIPE_SECRET_KEY: z.string(),
+    STRIPE_WEBHOOK_SECRET: z.string(),
+    SERVER_DB_URL: z.string(),
+    EMAIL_PASSWORD: z.string(),
+  },
+  runtimeEnv: {
+    REDIS_URL: process.env.REDIS_URL,
+    REDIS_TOKEN: process.env.REDIS_TOKEN,
+    GITHUB_OAUTH_SECRET: process.env.GITHUB_OAUTH_SECRET,
+    NEXT_PUBLIC_ENCRYPTION_KEY: process.env.NEXT_PUBLIC_ENCRYPTION_KEY,
+    NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID:
+      process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID,
+    NEXT_PUBLIC_GITHUB_OAUTH_SCOPES:
+      process.env.NEXT_PUBLIC_GITHUB_OAUTH_SCOPES,
+    JWT_SIGNING_KEY: process.env.JWT_SIGNING_KEY,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    REDIS_RATELIMIT_URL: process.env.REDIS_RATELIMIT_URL,
+    REDIS_RATELIMIT_TOKEN: process.env.REDIS_RATELIMIT_TOKEN,
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+    NEXT_PUBLIC_STRIPE_PUBLIC_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+    SERVER_DB_URL: process.env.SERVER_DB_URL,
+    REDIS_STRIPE_URL: process.env.REDIS_STRIPE_URL,
+    REDIS_STRIPE_TOKEN: process.env.REDIS_STRIPE_TOKEN,
+    REDIS_TEMP_URL: process.env.REDIS_TEMP_URL,
+    REDIS_TEMP_TOKEN: process.env.REDIS_TEMP_TOKEN,
+    REDIS_SESSIONS_URL: process.env.REDIS_SESSIONS_URL,
+    REDIS_SESSIONS_TOKEN: process.env.REDIS_SESSIONS_TOKEN,
+    EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
+  },
+});

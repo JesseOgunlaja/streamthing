@@ -1,0 +1,81 @@
+@use "../scss/utils/dark-theme" as dark-theme;
+@use "../scss/utils/light-theme" as light-theme;
+
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: inherit;
+}
+
+:root {
+  color-scheme: var(--color-scheme);
+  --nice-blue: rgb(0, 98, 179);
+}
+
+a,
+button {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+button {
+  background: inherit;
+}
+
+html,
+body {
+  overflow-x: hidden !important;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--accent-color);
+}
+
+dialog[open] {
+  display: flex !important;
+}
+
+*:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.8;
+}
+
+#wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+:root:has(body.dark-theme) {
+  @include dark-theme.dark-theme;
+}
+
+:root:has(body.light-theme) {
+  @include light-theme.light-theme;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+}
+
+code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: rgba(115, 138, 148, 0.4);
+}

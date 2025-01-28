@@ -1,0 +1,39 @@
+@mixin settings-without-form {
+  &:not(:has(form)) {
+    flex-direction: column;
+    .container {
+      gap: 13px;
+      color: var(--opposite-color);
+
+      p {
+        @media (width < 533px) {
+          span:nth-child(1),
+          br {
+            display: none;
+          }
+        }
+        text-align: center;
+
+        &:nth-child(1) {
+          font-size: 20px;
+          margin-bottom: 2px;
+          font-weight: 500;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          background: var(--nice-blue);
+          color: white;
+          padding: 5px 10px;
+          font-size: 18.5px;
+          border-radius: 7px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

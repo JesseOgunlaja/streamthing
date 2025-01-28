@@ -1,0 +1,50 @@
+@mixin content {
+  & > svg {
+    height: 40px !important;
+    width: 40px !important;
+  }
+
+  &-title {
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+
+  &-description {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+
+  &-yearly-price {
+    margin-bottom: 27px;
+    font-size: 15px;
+  }
+
+  &-price {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 3px;
+
+    &::before {
+      content: "£";
+      font-size: 20px;
+    }
+    &::after {
+      content: "/mo";
+      font-size: 16px;
+    }
+  }
+
+  @media (width < 1300px) {
+    &-description {
+      font-size: 12.5px;
+    }
+    &-title {
+      font-size: 25px;
+    }
+    &-price {
+      font-size: 35px;
+    }
+  }
+}

@@ -1,0 +1,204 @@
+#page {
+  min-height: calc(100vh - 130px);
+  padding: 50px;
+  width: min(100vw, 1250px);
+  margin: 0 auto;
+  margin-top: 80px;
+}
+#page #header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#page #header h1 {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 35px;
+}
+#page #header h1 svg {
+  height: 35px;
+  width: 35px;
+  margin-right: 15px;
+}
+#page #header h1 svg:nth-child(2) {
+  height: 30px;
+  width: 30px;
+  margin-left: 15px;
+}
+#page #header .dropdown {
+  position: relative;
+}
+#page #header .dropdown > svg {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  padding: 5px;
+  box-sizing: content-box;
+}
+#page #header .dropdown > svg:focus {
+  border-radius: 5px;
+  outline: var(--server-card-border-color) 2px solid;
+}
+#page #header .dropdown > svg:focus + .popup {
+  display: flex;
+}
+#page #header .dropdown .popup {
+  display: none;
+  width: max-content;
+  background: var(--server-popup-bg-color);
+  position: absolute;
+  right: 30px;
+  top: 50px;
+  z-index: 100;
+  flex-direction: column;
+  border: 1.5px solid var(--server-card-border-color);
+  border-radius: 6px;
+}
+#page #header .dropdown .popup:hover {
+  display: flex;
+}
+#page #header .dropdown .popup button {
+  padding: 6.5px 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 16.5px;
+  cursor: pointer;
+  background: inherit;
+  color: inherit;
+}
+#page #header .dropdown .popup button svg {
+  height: 23px;
+  width: 23px;
+}
+#page #header .dropdown .popup button:nth-child(1) {
+  border-radius: 6px 6px 0px 0px;
+}
+#page #header .dropdown .popup button:nth-child(2) {
+  border-radius: 0px 0px 0px 0px;
+}
+#page #header .dropdown .popup button:nth-child(3) {
+  color: red;
+  border-radius: 0px 0px 6px 6px;
+}
+#page #header .dropdown .popup button:hover {
+  background: var(--server-popup-hover-bg-color);
+}
+#page #header button {
+  cursor: pointer;
+  color: white;
+  font-size: 19px;
+  padding: 12.5px;
+  border-radius: 5px;
+  background: var(--nice-blue);
+}
+@media (width < 600) {
+  #page #header:not(:has(.dropdown)) {
+    margin-bottom: 30px;
+    align-items: normal;
+    flex-direction: column;
+  }
+  #page #header:not(:has(.dropdown)) h1 {
+    justify-content: center;
+  }
+}
+#page > dialog {
+  height: 100vh;
+  width: 100vw;
+  z-index: 900;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+#page > dialog > form {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: var(--auth-form-background-color);
+  border-radius: 20px;
+}
+#page > dialog > form p {
+  color: var(--auth-form-input-font-color);
+  font-size: 20px;
+}
+#page > dialog > form .buttons {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 35px;
+}
+#page > dialog > form .buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: var(--nice-blue);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 18.5px;
+  cursor: pointer;
+}
+#page > dialog > form input,
+#page > dialog > form label,
+#page > dialog > form select {
+  padding: 6.5px;
+  font-size: 16px;
+  width: 100%;
+  color: var(--auth-form-input-font-color);
+}
+#page > dialog > form input,
+#page > dialog > form select {
+  background: none;
+  border: 1.5px solid var(--auth-form-border-color);
+  border-radius: 6px;
+}
+#page > dialog > form select {
+  background: url("data:image/svg+xml;utf8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M3.05669%206.97869L8.00002%2012L12.9434%206.97869C13.4627%206.45069%2013.4627%205.59135%2012.9434%205.06335C12.424%204.53535%2011.5774%204.53535%2011.0574%205.06335L8.00002%208.16936L4.94202%205.06335C4.69002%204.80735%204.35535%204.66669%203.99935%204.66669C3.64335%204.66669%203.30869%204.80735%203.05669%205.06335C2.53669%205.59135%202.53669%206.45135%203.05669%206.97869Z%22%20fill%3D%22%23a3aacc%22%2F%3E%0A%3C%2Fsvg%3E%0A");
+  background-size: 23px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 6px);
+  -webkit-appearance: none;
+  appearance: none;
+}
+#page #nav {
+  position: relative;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--dashboard-navbar-border-color);
+}
+#page #nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+#page #nav ul li {
+  padding-bottom: 10px;
+  text-align: center;
+  font-style: none;
+}
+#page #nav ul li.active {
+  border-bottom: 2px solid var(--dashboard-navbar-border-color-active);
+}
+#page #nav ul li a {
+  display: flex;
+  font-size: 18.5px;
+}
+@media (width < 600px) {
+  #page {
+    padding: 20px;
+  }
+}
+@media (width < 500px) {
+  #page {
+    min-height: calc(100vh - 155px);
+  }
+}

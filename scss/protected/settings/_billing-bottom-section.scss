@@ -1,0 +1,36 @@
+@mixin bottom-section {
+  .bottom-section {
+    & > p {
+      padding: 7.5px 15px;
+      display: flex;
+      font-size: 14px;
+      justify-content: space-between;
+      align-items: center;
+
+      a,
+      button,
+      span {
+        background: var(--nice-blue);
+        padding: 5px 11px;
+        border-radius: 5px;
+        color: white;
+        text-align: center;
+      }
+
+      span {
+        cursor: not-allowed;
+      }
+
+      a,
+      button {
+        font-size: 15px;
+        cursor: pointer;
+      }
+    }
+
+    hr {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  }
+}

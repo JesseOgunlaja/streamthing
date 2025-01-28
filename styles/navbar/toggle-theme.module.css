@@ -1,0 +1,45 @@
+.container .checkbox {
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.2s;
+}
+.container .checkbox-label {
+  background-color: var(--toggle-theme-bg-color);
+  width: calc(var(--checkbox-size) * 2);
+  height: var(--checkbox-size);
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container .checkbox-label #moon,
+.container .checkbox-label #sun {
+  transition: opacity 1s ease;
+  z-index: 10;
+}
+.container .checkbox-label #sun {
+  color: #000;
+  opacity: var(--light-opacity);
+  height: var(--light-height);
+  width: var(--light-height);
+}
+.container .checkbox-label #moon {
+  color: #fff;
+  opacity: var(--dark-opacity);
+  height: var(--dark-height);
+  width: var(--dark-height);
+}
+.container .checkbox-label .ball {
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  position: absolute;
+  transition: transform 0.35s;
+  border-radius: 50%;
+  background-color: var(--toggle-theme-ball-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(var(--toggle-theme-ball-translateX));
+}

@@ -1,0 +1,70 @@
+@mixin dropdown {
+  .dropdown {
+    position: relative;
+    & > svg {
+      height: 30px;
+      width: 30px;
+      cursor: pointer;
+      padding: 5px;
+      box-sizing: content-box;
+
+      &:focus {
+        border-radius: 5px;
+        outline: var(--server-card-border-color) 2px solid;
+      }
+
+      &:focus + .popup {
+        display: flex;
+      }
+    }
+    .popup {
+      display: none;
+      width: max-content;
+      background: var(--server-popup-bg-color);
+      position: absolute;
+      right: 30px;
+      top: 50px;
+      z-index: 100;
+      flex-direction: column;
+      border: 1.5px solid var(--server-card-border-color);
+      border-radius: 6px;
+
+      &:hover {
+        display: flex;
+      }
+
+      button {
+        padding: 6.5px 10px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-size: 16.5px;
+        cursor: pointer;
+        background: inherit;
+        color: inherit;
+
+        svg {
+          height: 23px;
+          width: 23px;
+        }
+
+        &:nth-child(1) {
+          border-radius: 6px 6px 0px 0px;
+        }
+
+        &:nth-child(2) {
+          border-radius: 0px 0px 0px 0px;
+        }
+
+        &:nth-child(3) {
+          color: red;
+          border-radius: 0px 0px 6px 6px;
+        }
+
+        &:hover {
+          background: var(--server-popup-hover-bg-color);
+        }
+      }
+    }
+  }
+}

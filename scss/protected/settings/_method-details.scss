@@ -1,0 +1,63 @@
+@use "./method-dropdown" as dropdown;
+
+@mixin method-details {
+  .method-details {
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 7px;
+
+    &-wrapper {
+      display: grid;
+      min-width: 100%;
+      width: max-content;
+    }
+
+    &:not(:last-of-type) {
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--settings-dropdown-separator-color);
+    }
+
+    svg {
+      &:last-child {
+        height: 26px;
+        width: 26px;
+        padding: 5px;
+      }
+
+      height: 25px;
+      width: 25px;
+      cursor: pointer;
+    }
+
+    p {
+      &#active-method {
+        background: var(--payment-method-active-bg-color);
+        border-radius: 15px;
+        padding: 4px 9px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7.5px;
+        font-weight: 500;
+
+        svg {
+          stroke: var(--payment-method-active-check-color);
+          background: var(--payment-method-active-check-bg-color);
+          height: 15.5px;
+          width: 15.5px;
+          border-radius: 50%;
+          cursor: default;
+          padding: 2.25px;
+        }
+      }
+      &:nth-last-child(3) {
+        margin-left: auto;
+      }
+    }
+
+    @include dropdown.dropdown;
+  }
+}

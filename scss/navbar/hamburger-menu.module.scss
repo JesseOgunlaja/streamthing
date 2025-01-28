@@ -1,0 +1,55 @@
+.checkbox {
+  display: none;
+
+  &:checked + label > .hamburger {
+    .bar-1 {
+      transform: translateX(40px);
+      background-color: transparent;
+    }
+    .bar-2 {
+      transform: rotate(45deg);
+    }
+    .bar-3 {
+      transform: rotate(-45deg);
+    }
+    .bar-4 {
+      transform: translateX(-40px);
+      background-color: transparent;
+    }
+  }
+
+  & + label > .hamburger {
+    cursor: pointer;
+    width: 27.5px;
+    height: 22.5px;
+    position: relative;
+
+    span {
+      padding: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--accent-color);
+      display: block;
+      border-radius: 4px;
+      transition: transform 0.4s ease-in-out, background-color 0.4s ease-in-out;
+      position: absolute;
+
+      &.bar-1 {
+        top: 0;
+      }
+
+      &.bar-2,
+      &.bar-3 {
+        top: 10px;
+      }
+
+      &.bar-3 {
+        right: 0;
+      }
+
+      &.bar-4 {
+        bottom: 0;
+      }
+    }
+  }
+}

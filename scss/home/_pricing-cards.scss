@@ -1,0 +1,60 @@
+@use "./pricing-card-features" as features;
+@use "./pricing-card-content" as content;
+@use "../utils/fade-in-effect" as fade-in-effect;
+
+@mixin pricing-cards($cursor) {
+  display: grid;
+  grid-template-columns: repeat(4, min(22%, 375px));
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-height: none;
+  padding: 5px;
+
+  .pricing-card {
+    cursor: $cursor;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    max-height: 500px;
+    padding: 12.5px;
+    padding-top: 40px;
+    border-radius: 10px;
+    box-shadow: var(--pricing-card-box-shadow-color) 0px 0px 4px;
+    transition: transform 200ms;
+    @include fade-in-effect.fade-in;
+
+    &:has(.hover):hover {
+      transition-delay: none;
+      transform: scale(1.035);
+    }
+
+    @include content.content;
+
+    .features {
+      @include features.features;
+    }
+  }
+
+  @media (width < 1060px) {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 95vw;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      height: 0px;
+    }
+
+    .pricing-card {
+      width: 100%;
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}

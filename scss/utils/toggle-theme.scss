@@ -1,0 +1,23 @@
+#toggle-theme-container {
+  --checkbox-size: 30px;
+}
+
+body.dark-theme {
+  #toggle-theme-container {
+    --light-opacity: 0;
+    --dark-opacity: 1;
+    --dark-height: calc(var(--checkbox-size) - 10px);
+    --light-height: 0px;
+    --toggle-theme-ball-translateX: calc(100%);
+  }
+}
+
+body:not(.dark-theme) {
+  #toggle-theme-container {
+    --light-opacity: 1;
+    --dark-opacity: 0;
+    --dark-height: 0px;
+    --light-height: calc(var(--checkbox-size) - 10px);
+    --toggle-theme-ball-translateX: 0px;
+  }
+}

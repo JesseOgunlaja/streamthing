@@ -1,0 +1,33 @@
+@use "./dropdown" as dropdown;
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: var(--bg-color);
+  width: 100vw;
+  // box-shadow: var(--navbar-box-shadow-color) 0px 2px 4px;
+
+  & > ul {
+    padding: 3px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+
+    & > li {
+      text-align: center;
+      font-style: none;
+      padding: 10px;
+      z-index: 10;
+      float: left;
+      width: fit-content;
+
+      a {
+        display: flex;
+        font-size: 23px;
+      }
+    }
+  }
+}

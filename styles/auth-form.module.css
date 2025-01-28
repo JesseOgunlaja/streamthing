@@ -1,0 +1,80 @@
+.page {
+  min-height: calc(100vh - 30px);
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.page #disclaimer {
+  position: absolute;
+  bottom: 20px;
+  font-size: 14px;
+  color: var(--disclaimer-color);
+}
+.page #disclaimer a {
+  text-decoration: underline;
+  color: inherit;
+}
+.page .container {
+  width: min(450px, 90vw);
+  border: 1.5px solid var(--auth-form-border-color);
+  background: var(--auth-form-background-color);
+  padding: 27.5px 30px;
+  border-radius: 10px;
+}
+.page .container h1 {
+  font-size: 35px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.page .container .separator {
+  margin-top: 25px;
+  width: calc(100% + 60px);
+  transform: translateX(-30px);
+  background: var(--auth-form-separator-color);
+  height: 2.5px;
+}
+.page .container .form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.page .container .form label {
+  position: relative;
+}
+.page .container .form label,
+.page .container .form input {
+  color: var(--auth-form-input-font-color);
+  font-size: 17.5px;
+}
+.page .container .form input {
+  font-size: 16px;
+  margin: 3px 0 30px;
+  width: 100%;
+  border-radius: 6.25px;
+  background: none;
+  border: 1.5px solid var(--auth-form-input-background-color);
+  padding: 12.5px 10px;
+}
+.page .container .form input[type=submit] {
+  color: white;
+  margin: 12.5px 0 20px;
+  background: rgb(6, 76, 172);
+  font-weight: 500;
+}
+.page .container .form .error-message {
+  font-size: 15.25px;
+  color: red;
+  height: 0px;
+  display: inline;
+  transform: translateY(-22.5px);
+}
+.page .container p {
+  text-align: center;
+  color: var(--auth-form-input-font-color);
+}
+.page .container p a {
+  margin-left: 2px;
+}
