@@ -76,6 +76,7 @@ export interface PaymentMethod extends BasePaymentMethod {
 }
 
 declare global {
+  // eslint-disable-next-line no-unused-vars
   interface Document {
     startViewTransition?(
       // eslint-disable-next-line no-unused-vars
