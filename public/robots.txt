@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://streamthing.dev
+
+# Sitemaps
+Sitemap: https://streamthing.dev/sitemap.xml
