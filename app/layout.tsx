@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Streamthing",
     description:
       "A WebSocket platform for Node JS. Built with a focus on scalability and performance, our servers incorporate cutting edge technologies to provide lightning fast speeds and seamless deployment.",
-    images: ["/opengraph.png"],
+    images: ["https://streamthing.dev/opengraph.png"],
     locale: "en_GB",
   },
   creator: "Jesse Ogunlaja",
