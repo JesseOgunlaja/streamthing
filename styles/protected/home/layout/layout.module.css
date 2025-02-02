@@ -156,6 +156,9 @@
   width: 100%;
   color: var(--auth-form-input-font-color);
 }
+#page > dialog > form option {
+  color: #000;
+}
 #page > dialog > form input,
 #page > dialog > form select {
   background: none;
