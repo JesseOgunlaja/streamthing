@@ -1,4 +1,4 @@
-import { MB } from "@/constants/constants";
+import { KB, MB } from "@/constants/constants";
 import { UsageData } from "@/lib/types";
 import styles from "@/styles/protected/home/servers/server-usage.module.css";
 
@@ -24,7 +24,7 @@ const ServerMetrics = ({ usageData }: PropsType) => {
       <p className={styles.metric}>
         Average message size:{" "}
         {usageData.messages
-          ? (usageData.dataTransfer / usageData.messages).toFixed(5)
+          ? (usageData.dataTransfer / usageData.messages / KB).toFixed(5)
           : 0}{" "}
         KB
       </p>
