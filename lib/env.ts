@@ -26,6 +26,7 @@ export const env = createEnv({
     STRIPE_SECRET_KEY: z.string(),
     STRIPE_WEBHOOK_SECRET: z.string(),
     SERVER_DB_URL: z.string(),
+    EMAIL_USERNAME: z.string(),
     EMAIL_PASSWORD: z.string(),
   },
   runtimeEnv: {
@@ -53,5 +54,6 @@ export const env = createEnv({
     REDIS_SESSIONS_URL: process.env.REDIS_SESSIONS_URL,
     REDIS_SESSIONS_TOKEN: process.env.REDIS_SESSIONS_TOKEN,
     EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
+    EMAIL_USERNAME: process.env.EMAIL_USERNAME,
   },
 });
