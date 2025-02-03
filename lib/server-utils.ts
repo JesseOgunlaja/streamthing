@@ -19,7 +19,7 @@ export const getUserFromHeaders = React.cache(async () => {
     await decodeJWT((await cookies()).get("access_token")?.value as string)
   );
   const { email } = await readIdentifier(identifier);
-  return await getUserByEmail(email);
+  return (await getUserByEmail(email)) as UserType;
 });
 
 export async function getPathname() {
