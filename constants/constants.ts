@@ -3,7 +3,7 @@ import { GenericObject } from "../lib/types";
 
 export const regions = {
   us3: "US West, California",
-  eus: "Frankfurst, Germany",
+  eus: "Frankfurt, Germany",
 } as GenericObject<string>;
 
 export const serversByRegion = {
