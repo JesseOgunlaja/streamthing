@@ -8,10 +8,6 @@
     font-weight: 500;
     border: 1px solid var(--accent-color);
     width: fit-content;
-    background-size: cover;
-    --mask: radial-gradient(circle at bottom right, transparent 0%, black 8.5%);
-    -webkit-mask-image: var(--mask);
-    mask-image: var(--mask);
   }
   .descriptions-container {
     .big-description {

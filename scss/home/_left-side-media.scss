@@ -42,6 +42,10 @@
   }
 
   @media (width < 600px) {
+    .slogan {
+      font-size: 12px;
+      padding: 3px 7px;
+    }
     .buttons {
       justify-self: auto;
       flex-direction: column;
