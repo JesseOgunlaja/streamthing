@@ -1,8 +1,10 @@
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import React from "react";
+import { decodeJWT, readIdentifier } from "./auth";
 import { env } from "./env";
-import { redis } from "./redis";
+import { getUserByEmail, redis } from "./redis";
 import { GenericValue, UserType } from "./types";
+import { AccessTokenJWTSchema } from "./zod/jwt";
 
 let user: UserType | null = null;
 
@@ -11,7 +13,13 @@ export const getUserFromHeaders = React.cache(async () => {
     (await headers()).get("user") as string
   ) as UserType | null;
   if (fetchedUser) user = fetchedUser;
-  return user as UserType;
+  if (user) return user;
+
+  const { identifier } = AccessTokenJWTSchema.parse(
+    await decodeJWT((await cookies()).get("access_token")?.value as string)
+  );
+  const { email } = await readIdentifier(identifier);
+  return await getUserByEmail(email);
 });
 
 export async function getPathname() {
