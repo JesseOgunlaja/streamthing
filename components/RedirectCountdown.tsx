@@ -23,6 +23,7 @@ const RedirectCountdown = ({
         if (prevCount < 1) {
           redirect = true;
         }
+        if (prevCount <= 0) return prevCount;
         return prevCount - 1;
       });
     }, 1000);
