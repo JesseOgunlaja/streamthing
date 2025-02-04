@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <ul>
         <li>
-          <p>&copy; 2024 Streamthing. All rights reserved.</p>
+          <p>&copy; 2025 Streamthing. All rights reserved.</p>
         </li>
         <li>
           <Link href="/terms-of-service">Terms</Link>
