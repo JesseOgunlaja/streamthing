@@ -21,6 +21,14 @@ const nextConfig = {
         source: "/home",
         destination: "/",
       },
+      {
+        source: "/terms-of-service",
+        destination: "/terms-of-service.html",
+      },
+      {
+        source: "/privacy-policy",
+        destination: "/privacy-policy.html",
+      },
     ];
   },
 } satisfies NextConfig;
