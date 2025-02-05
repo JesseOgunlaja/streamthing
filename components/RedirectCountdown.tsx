@@ -17,16 +17,17 @@ const RedirectCountdown = ({
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (count === 0) router.push(redirectPath);
-      else {
-        setCount((prevCount) => {
-          return prevCount - 1;
-        });
-      }
+      setCount((prevCount) => {
+        if (prevCount > 0) return prevCount - 1;
+
+        router.push(redirectPath);
+        clearInterval(timer);
+        return 0;
+      });
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [redirectPath]);
+  }, []);
 
   return `${count} ${count === 1 ? "second" : "seconds"}`;
 };
