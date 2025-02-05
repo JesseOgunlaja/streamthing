@@ -29,13 +29,11 @@ export async function sendResetPasswordEmail(email: string) {
 
   const jwt = promiseResults[1];
 
-  sendEmail(email, "Reset password request", {
+  await sendEmail(email, "Reset password request", {
     link: `${env.NEXT_PUBLIC_BASE_URL}/reset-password?code=${jwt}`,
     linkText: "Reset password",
     descriptionText: "You can reset your password by clicking the button below",
   });
-
-  console.log(`${env.NEXT_PUBLIC_BASE_URL}/reset-password?code=${jwt}`);
 
   return {
     ok: true,
