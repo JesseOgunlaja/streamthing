@@ -44,6 +44,8 @@ const EmailComponent = ({
             border-radius: 7.5px;
           }
           .logo {
+            height: 70px;
+            width: 70px;
             display: block;
             margin: 0 auto;
           }
@@ -86,7 +88,7 @@ const EmailComponent = ({
             color: rgba(0, 0, 0, 0.5);
           }
           .disclaimer {
-            margin-top: 5px;
+            margin-top: 5px !important;
             text-align: center;
             color: black;
             margin: 0 auto;
