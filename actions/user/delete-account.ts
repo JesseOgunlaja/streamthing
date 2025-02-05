@@ -2,7 +2,7 @@
 
 import { serversByRegion } from "@/constants/constants";
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { stripeInstance } from "@/lib/stripe";
 import { cookies } from "next/headers";
 
@@ -17,9 +17,9 @@ export async function deleteAccount() {
     };
   }
 
-  const redisPipeline = redis.pipeline();
+  const KVPipeline = kv.main.pipeline();
   user.servers.forEach((server) => {
-    redisPipeline.del(`server-${server.id}`);
+    KVPipeline.del(`server-${server.id}`);
     fetch(`${serversByRegion[server.region]}/reset-user-cache/${user.id}`, {
       method: "POST",
     });
@@ -31,17 +31,17 @@ export async function deleteAccount() {
     });
   });
   if (user.githubID) {
-    redisPipeline.del(`github-${user.githubID}`);
+    KVPipeline.del(`github-${user.githubID}`);
   }
-  redisPipeline.del(`user-${user.email}`);
+  KVPipeline.del(`user-${user.email}`);
 
   if (user.stripe_customer_id) {
     await Promise.all([
-      redisPipeline.exec(),
+      KVPipeline.exec(),
       stripeInstance.customers.del(user.stripe_customer_id),
     ]);
   } else {
-    await redisPipeline.exec();
+    await KVPipeline.exec();
   }
 
   const cookiesInstance = await cookies();

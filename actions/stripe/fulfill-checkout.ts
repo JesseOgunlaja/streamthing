@@ -1,7 +1,7 @@
 "use server";
 
 import { stripePricingTokens } from "@/constants/billing";
-import { redis, redis_stripe } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { stripeInstance } from "@/lib/stripe";
 import { GenericObject } from "@/lib/types";
 import { isPropertyInObject } from "@/lib/utils";
@@ -10,17 +10,17 @@ export async function fulfillCheckout(sessionID: string) {
   const lockKey = `lock:checkout:${sessionID}`;
   const fulfillmentKey = `fulfillment:${sessionID}`;
 
-  const mainRedisPipeline = redis.pipeline();
-  const stripeRedisPipeline = redis_stripe.pipeline();
+  const mainPipeline = kv.main.pipeline();
+  const stripePipeline = kv.stripe.pipeline();
 
   try {
-    const locked = await redis_stripe.set(lockKey, "locked", {
+    const locked = await kv.main.set(lockKey, "locked", {
       nx: true,
       ex: 30,
     });
     if (!locked) return { ok: false };
 
-    const existingFulfillment = await redis_stripe.json.get(fulfillmentKey);
+    const existingFulfillment = await kv.stripe.json.get(fulfillmentKey);
     if (existingFulfillment) return { ok: false };
 
     const checkoutSession = await stripeInstance.checkout.sessions.retrieve(
@@ -57,18 +57,14 @@ export async function fulfillCheckout(sessionID: string) {
     const customerID = JSON.stringify(customer);
     const subscriptionID = JSON.stringify(subscription);
 
-    stripeRedisPipeline.json.set(fulfillmentKey, "$", fulfillmentData);
-    mainRedisPipeline.json.set(userKey, "$.plan", JSON.stringify(plan));
-    mainRedisPipeline.json.set(userKey, "$.stripe_customer_id", customerID);
-    mainRedisPipeline.json.set(
-      userKey,
-      "$.stripe_subscription_id",
-      subscriptionID
-    );
+    stripePipeline.json.set(fulfillmentKey, "$", fulfillmentData);
+    mainPipeline.json.set(userKey, "$.plan", JSON.stringify(plan));
+    mainPipeline.json.set(userKey, "$.stripe_customer_id", customerID);
+    mainPipeline.json.set(userKey, "$.stripe_subscription_id", subscriptionID);
 
-    stripeRedisPipeline.del(lockKey);
-    await mainRedisPipeline.exec();
-    await stripeRedisPipeline.exec();
+    stripePipeline.del(lockKey);
+    await mainPipeline.exec();
+    await stripePipeline.exec();
 
     return { ok: true, plan: plan };
   } catch (error) {

@@ -2,7 +2,7 @@ import { cookies, headers } from "next/headers";
 import React from "react";
 import { decodeJWT, readIdentifier } from "./auth";
 import { env } from "./env";
-import { getUserByEmail, redis } from "./redis";
+import { getUserByEmail, kv } from "./redis";
 import { GenericValue, UserType } from "./types";
 import { AccessTokenJWTSchema } from "./zod/jwt";
 
@@ -40,7 +40,7 @@ export async function setUserValue(
   path: string,
   value: GenericValue
 ) {
-  await redis.json.set(`user-${key}`, path, value);
+  await kv.main.json.set(`user-${key}`, path, value);
 }
 
 export async function getIP() {

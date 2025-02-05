@@ -2,7 +2,7 @@
 
 import { serversByRegion } from "@/constants/constants";
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { indexOf } from "@/lib/utils";
 import { cookies } from "next/headers";
 
@@ -25,15 +25,15 @@ export async function deleteServer(serverID: string) {
     };
   }
 
-  const redisPipeline = redis.pipeline();
+  const kvPipeline = kv.main.pipeline();
   user.servers.splice(indexOf(user.servers, server), 1);
-  redisPipeline.json.del(`server-${serverID}`);
-  redisPipeline.json.set(
+  kvPipeline.json.del(`server-${serverID}`);
+  kvPipeline.json.set(
     `user-${user.email}`,
     "$.servers",
     JSON.stringify(user.servers)
   );
-  await redisPipeline.exec();
+  await kvPipeline.exec();
 
   fetch(`${serversByRegion[server.region]}/reset-server-cache/${serverID}`, {
     method: "POST",

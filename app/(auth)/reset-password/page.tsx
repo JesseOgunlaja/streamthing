@@ -1,6 +1,6 @@
 import ResetPasswordForm from "@/components/auth/ResetPasswordForm";
 import { decodeJWT } from "@/lib/auth";
-import { redis_temp } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { GenericObject } from "@/lib/types";
 import { ResetPasswordJWTSchema } from "@/lib/zod/jwt";
 import styles from "@/styles/auth-form.module.css";
@@ -14,7 +14,7 @@ const Page = async ({ searchParams }: PropsType) => {
   try {
     const jwt = (await searchParams).code;
     const { email, code } = ResetPasswordJWTSchema.parse(await decodeJWT(jwt));
-    const DBCode = await redis_temp.get(`reset-password-${email}`);
+    const DBCode = await kv.temp.get(`reset-password-${email}`);
     if (String(DBCode) !== code) throw new Error("Invalid code");
 
     return (

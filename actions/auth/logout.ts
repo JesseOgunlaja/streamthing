@@ -1,7 +1,7 @@
 "use server";
 
 import { decodeJWT } from "@/lib/auth";
-import { redis_sessions } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { SessionJWTSchema } from "@/lib/zod/jwt";
 import { cookies } from "next/headers";
 
@@ -11,7 +11,7 @@ export async function logout() {
     const session = cookiesInstance.get("session")?.value as string;
 
     const { sessionID } = SessionJWTSchema.parse(await decodeJWT(session));
-    await redis_sessions.del(sessionID);
+    await kv.sessions.del(sessionID);
 
     cookiesInstance.delete("session");
     cookiesInstance.delete("access_token");

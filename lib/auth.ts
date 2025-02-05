@@ -9,7 +9,7 @@ import {
   unjumbleStrings,
 } from "./encryption";
 import { env } from "./env";
-import { getUserByEmail, redis_sessions } from "./redis";
+import { getUserByEmail, kv } from "./redis";
 import { getIP } from "./server-utils";
 import { SessionData } from "./types";
 import { generateUUID } from "./utils";
@@ -57,8 +57,8 @@ export async function createSessionId(
   auth: "Internal" | "GitHub"
 ) {
   const sessionID = generateUUID();
-  const redisPipeline = redis_sessions.pipeline();
-  redisPipeline.json.set(sessionID, "$", {
+  const KVPipeline = kv.sessions.pipeline();
+  KVPipeline.json.set(sessionID, "$", {
     email,
     id,
     auth,
@@ -66,13 +66,13 @@ export async function createSessionId(
     ip: await getIP(),
     active: true,
   });
-  redisPipeline.expire(sessionID, 7 * 24 * 60 * 60);
-  await redisPipeline.exec();
+  KVPipeline.expire(sessionID, 7 * 24 * 60 * 60);
+  await KVPipeline.exec();
   return sessionID;
 }
 
 export async function readSessionID(id: string) {
-  const sessionData = (await redis_sessions.json.get(id)) as SessionData;
+  const sessionData = (await kv.sessions.json.get(id)) as SessionData;
   if (!sessionData.active) throw new Error("Session deleted");
   return { email: sessionData.email, id: sessionData.id };
 }

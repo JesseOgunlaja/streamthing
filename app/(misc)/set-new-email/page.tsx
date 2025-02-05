@@ -1,6 +1,6 @@
 import { createSessionId, decodeJWT, signJWT } from "@/lib/auth";
 import { encryptString } from "@/lib/encryption";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { stripeInstance } from "@/lib/stripe";
 import { GenericObject, UserType } from "@/lib/types";
 import { NewEmailVerificationJWTSchema } from "@/lib/zod/jwt";
@@ -25,23 +25,19 @@ export default async function Page({ searchParams }: PropsType) {
     const key = `user-${user.email}`;
     const newEmailString = JSON.stringify(newEmail);
 
-    const redisPipeline = redis.pipeline();
-    redisPipeline.json.set(key, "$", {
+    const KVPipeline = kv.main.pipeline();
+    KVPipeline.json.set(key, "$", {
       ...user,
       email: newEmail,
       servers: user.servers.map((server) => ({ ...server, owner: newEmail })),
     } satisfies UserType);
     user.servers.forEach((server) => {
-      redisPipeline.json.set(`server-${server.id}`, "$.owner", newEmailString);
+      KVPipeline.json.set(`server-${server.id}`, "$.owner", newEmailString);
     });
     if (user.githubID) {
-      redisPipeline.json.set(
-        `github-${user.githubID}`,
-        "$.email",
-        newEmailString
-      );
+      KVPipeline.json.set(`github-${user.githubID}`, "$.email", newEmailString);
     }
-    redisPipeline.rename(key, `user-${newEmail}`);
+    KVPipeline.rename(key, `user-${newEmail}`);
 
     sessionJWT = await signJWT({
       sessionID: await createSessionId(newEmail, user.id, "Internal"),
@@ -49,7 +45,7 @@ export default async function Page({ searchParams }: PropsType) {
     });
 
     await Promise.all([
-      redisPipeline.exec(),
+      KVPipeline.exec(),
       stripeInstance.subscriptions.update(user.stripe_subscription_id, {
         metadata: { email: newEmail },
       }),

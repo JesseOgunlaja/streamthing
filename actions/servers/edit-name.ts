@@ -2,7 +2,7 @@
 
 import { serversByRegion } from "@/constants/constants";
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { cookies } from "next/headers";
 
 export async function editServerName(serverID: string, newName: string) {
@@ -26,18 +26,14 @@ export async function editServerName(serverID: string, newName: string) {
 
   server.name = newName;
 
-  const redisPipeline = redis.pipeline();
-  redisPipeline.json.set(
-    `server-${serverID}`,
-    "$.name",
-    JSON.stringify(newName)
-  );
-  redisPipeline.json.set(
+  const KVPipeline = kv.main.pipeline();
+  KVPipeline.json.set(`server-${serverID}`, "$.name", JSON.stringify(newName));
+  KVPipeline.json.set(
     `user-${user.email}`,
     "$.servers",
     JSON.stringify(user.servers)
   );
-  await redisPipeline.exec();
+  await KVPipeline.exec();
 
   fetch(`${serversByRegion[server.region]}/reset-server-cache/${serverID}`, {
     method: "POST",

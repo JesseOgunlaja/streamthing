@@ -2,7 +2,7 @@
 
 import { signJWT } from "@/lib/auth";
 import { env } from "@/lib/env";
-import { getUserByEmail, redis, redis_temp } from "@/lib/redis";
+import { getUserByEmail, kv } from "@/lib/redis";
 import { generateRandomNumbers } from "@/lib/utils";
 import { PasswordSchema } from "@/lib/zod/user";
 import { isValid } from "@/lib/zod/utils";
@@ -21,7 +21,7 @@ export async function sendResetPasswordEmail(email: string) {
 
   const code = generateRandomNumbers(10);
   const promiseResults = await Promise.all([
-    redis_temp.set(`reset-password-${email}`, code, {
+    kv.temp.set(`reset-password-${email}`, code, {
       ex: 60 * 60,
     }),
     signJWT({ email: email, code, type: "reset password" }, "1h"),
@@ -49,7 +49,7 @@ export async function resetPassword(
   email: string,
   password: string
 ) {
-  const redisCode = await redis_temp.get(`reset-password-${email}`);
+  const redisCode = await kv.temp.get(`reset-password-${email}`);
   if (String(redisCode) !== code) {
     return {
       ok: false,
@@ -67,8 +67,8 @@ export async function resetPassword(
 
   const hashedPassword = await hashPassword(password, 10);
 
-  await redis_temp.del(`reset-password-${email}`);
-  await redis.json.set(
+  await kv.temp.del(`reset-password-${email}`);
+  await kv.main.json.set(
     `user-${email}`,
     "$.password",
     JSON.stringify(hashedPassword)

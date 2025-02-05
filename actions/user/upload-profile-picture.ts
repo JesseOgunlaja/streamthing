@@ -1,10 +1,10 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { utapi } from "@/app/api/uploadthing/core";
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { UserType } from "@/lib/types";
+import { cookies } from "next/headers";
 
 export async function uploadProfilePicture(url: string, id: string) {
   const access_token = (await cookies()).get("access_token")?.value || "";
@@ -20,7 +20,7 @@ export async function uploadProfilePicture(url: string, id: string) {
     utapi.deleteFiles(user.profilePictureID);
   } catch {}
 
-  await redis.json.set(`user-${user.email}`, "$", {
+  await kv.main.json.set(`user-${user.email}`, "$", {
     ...user,
     profilePictureID: id,
     profilePicture: url,

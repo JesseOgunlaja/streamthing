@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { PasswordSchema } from "@/lib/zod/user";
 import { isValid } from "@/lib/zod/utils";
 import { hash as hashPassword } from "bcryptjs";
@@ -31,7 +31,7 @@ export async function addPassword(password: string) {
 
   const hashedPassword = await hashPassword(password, 10);
 
-  await redis.json.set(`user-${user.email}`, "$", {
+  await kv.main.json.set(`user-${user.email}`, "$", {
     ...user,
     auth: [...user.auth, "Internal"],
     password: hashedPassword,

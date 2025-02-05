@@ -1,7 +1,7 @@
 "use server";
 
 import { createSessionId, setSessionCookie, signJWT } from "@/lib/auth";
-import { getUserByEmail, redis } from "@/lib/redis";
+import { getUserByEmail, kv } from "@/lib/redis";
 import { GenericObject, UserType } from "@/lib/types";
 import { generateUUID } from "@/lib/utils";
 import { getGithubDetails } from "../lib/github";
@@ -21,7 +21,7 @@ export async function signUpWithGithub(code: string) {
     const { email, name, avatar_url, github_id, github_login } =
       await getGithubDetails(code);
 
-    const existingEntry = (await redis.json.get(`github-${github_id}`)) as
+    const existingEntry = (await kv.main.json.get(`github-${github_id}`)) as
       | GenericObject<string>
       | undefined;
 
@@ -32,10 +32,10 @@ export async function signUpWithGithub(code: string) {
     }
 
     const currentUser = await getUserByEmail(email);
-    const redisPipeline = redis.pipeline();
+    const KVPipeline = kv.main.pipeline();
     const newUserID = generateUUID();
 
-    redisPipeline.json.set(
+    KVPipeline.json.set(
       `user-${email}`,
       "$",
       {
@@ -57,13 +57,13 @@ export async function signUpWithGithub(code: string) {
       { nx: true }
     );
 
-    redisPipeline.json.set(`github-${github_id}`, "$", {
+    KVPipeline.json.set(`github-${github_id}`, "$", {
       email,
       id: currentUser?.id || newUserID,
     });
 
     if (currentUser) {
-      redisPipeline.json.set(`user-${email}`, "$", {
+      KVPipeline.json.set(`user-${email}`, "$", {
         ...currentUser,
         auth: [...currentUser.auth, "GitHub"],
         githubID: github_id,
@@ -71,7 +71,7 @@ export async function signUpWithGithub(code: string) {
       });
     }
 
-    await redisPipeline.exec();
+    await KVPipeline.exec();
     await setSession(email, currentUser?.id || newUserID);
 
     return { ok: true, message: "Valid credentials" };

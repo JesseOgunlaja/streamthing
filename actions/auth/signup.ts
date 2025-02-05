@@ -2,7 +2,7 @@
 
 import { createSessionId, setSessionCookie, signJWT } from "@/lib/auth";
 import { env } from "@/lib/env";
-import { getUserByEmail, redis } from "@/lib/redis";
+import { getUserByEmail, kv } from "@/lib/redis";
 import { UserType } from "@/lib/types";
 import { generateUUID } from "@/lib/utils";
 import { EmailSchema, PasswordSchema } from "@/lib/zod/user";
@@ -25,7 +25,7 @@ export async function signup(email: string, password: string) {
     if (user.auth.some((method) => method !== "Internal")) {
       const hashedPassword = await hashPassword(password, 10);
 
-      await redis.json.set(`user-${email}`, "$", {
+      await kv.main.json.set(`user-${email}`, "$", {
         ...user,
         auth: [...user.auth, "Internal"],
         password: hashedPassword,
@@ -53,7 +53,7 @@ export async function signup(email: string, password: string) {
   const id = generateUUID();
   const { imageURL, imageID } = await createProfilePicture(email[0], id);
 
-  redis.json.set(
+  kv.main.json.set(
     `user-${email}`,
     "$",
     {

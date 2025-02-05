@@ -1,8 +1,8 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
+import { cookies } from "next/headers";
 import { getGithubDetails } from "../lib/github";
 
 export async function linkGitHub(code: string) {
@@ -18,19 +18,19 @@ export async function linkGitHub(code: string) {
 
   const { github_id, github_login } = await getGithubDetails(code);
 
-  const redisPipeline = redis.pipeline();
-  redisPipeline.json.set(`user-${user.email}`, "$", {
+  const KVPipeline = kv.main.pipeline();
+  KVPipeline.json.set(`user-${user.email}`, "$", {
     ...user,
     auth: [...user.auth, "GitHub"],
     githubID: github_id,
     githubLogin: github_login,
   });
 
-  redisPipeline.json.set(`github-${github_id}`, "$", {
+  KVPipeline.json.set(`github-${github_id}`, "$", {
     email: user.email,
     id: user.id,
   });
-  await redisPipeline.exec();
+  await KVPipeline.exec();
 
   return {
     ok: true,

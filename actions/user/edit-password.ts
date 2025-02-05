@@ -1,7 +1,7 @@
 "use server";
 
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { PasswordSchema } from "@/lib/zod/user";
 import { isValid } from "@/lib/zod/utils";
 import { compare as comparePasswords, hash as hashPassword } from "bcryptjs";
@@ -33,7 +33,7 @@ export async function editPassword(oldPassword: string, newPassword: string) {
   }
 
   const hashedPassword = await hashPassword(newPassword, 10);
-  redis.json.set(
+  kv.main.json.set(
     `user-${user.email}`,
     "$.password",
     JSON.stringify(hashedPassword)

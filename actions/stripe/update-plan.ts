@@ -8,7 +8,7 @@ import {
 import { serversByRegion } from "@/constants/constants";
 import { isSignedIn } from "@/lib/auth";
 import { formatTimestamp } from "@/lib/lib";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { stripeInstance, StripeTypes } from "@/lib/stripe";
 import { cookies } from "next/headers";
 
@@ -51,7 +51,7 @@ export async function updateSubscriptionPlan(
     const newPlanID = stripePricingTokens[newPlan][newPlanType];
 
     await Promise.all([
-      redis.json.set(`user-${user.email}`, "$.plan", JSON.stringify(newPlan)),
+      kv.main.json.set(`user-${user.email}`, "$.plan", JSON.stringify(newPlan)),
       stripeInstance.subscriptions.update(subscription.id, {
         cancel_at_period_end: false,
         proration_behavior: "create_prorations",

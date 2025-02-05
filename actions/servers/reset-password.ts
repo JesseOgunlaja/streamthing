@@ -2,7 +2,7 @@
 
 import { serversByRegion } from "@/constants/constants";
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { generateRandomString } from "@/lib/utils";
 import { cookies } from "next/headers";
 
@@ -35,18 +35,18 @@ export async function resetServerPassword(serverID: string) {
   );
 
   server.password = generateRandomString(32);
-  const redisPipeline = redis.pipeline();
-  redisPipeline.json.set(
+  const kvPipeline = kv.main.pipeline();
+  kvPipeline.json.set(
     `server-${serverID}`,
     "$.password",
     JSON.stringify(server.password)
   );
-  redisPipeline.json.set(
+  kvPipeline.json.set(
     `user-${user.email}`,
     "$.servers",
     JSON.stringify(user.servers)
   );
-  await redisPipeline.exec();
+  await kvPipeline.exec();
 
   return {
     ok: true,

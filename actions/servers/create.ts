@@ -1,8 +1,7 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import {
   findValueByKey,
   generateRandomNumbers,
@@ -10,6 +9,7 @@ import {
   hasExceededServerLimit,
 } from "@/lib/utils";
 import { ServerNameSchema, isValid } from "@/lib/zod/utils";
+import { cookies } from "next/headers";
 
 export async function createServer(name: string, region: string) {
   const access_token = (await cookies()).get("access_token")?.value || "";
@@ -59,11 +59,11 @@ export async function createServer(name: string, region: string) {
 
   const newServers = [...currentServers, newServer];
 
-  const redisPipeline = redis.pipeline();
-  redisPipeline.json.set(serverKey, "$", newServer);
-  redisPipeline.json.set(userKey, "$.servers", JSON.stringify(newServers));
+  const kvPipeline = kv.main.pipeline();
+  kvPipeline.json.set(serverKey, "$", newServer);
+  kvPipeline.json.set(userKey, "$.servers", JSON.stringify(newServers));
 
-  await redisPipeline.exec();
+  await kvPipeline.exec();
 
   return {
     message: "Successfully created server",

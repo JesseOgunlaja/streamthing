@@ -1,9 +1,9 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { isSignedIn } from "@/lib/auth";
-import { redis } from "@/lib/redis";
+import { kv } from "@/lib/redis";
 import { GenericValue } from "@/lib/types";
+import { cookies } from "next/headers";
 
 export async function setUserValue(path: string, value: GenericValue) {
   const access_token = (await cookies()).get("access_token")?.value || "";
@@ -15,7 +15,7 @@ export async function setUserValue(path: string, value: GenericValue) {
     };
   }
 
-  await redis.json.set(`user-${user.email}`, path, value);
+  await kv.main.json.set(`user-${user.email}`, path, value);
 
   return {
     ok: true,
