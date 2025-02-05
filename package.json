@@ -7,8 +7,8 @@
     "build": "powershell next build",
     "start": "powershell next start",
     "lint": "powershell next lint",
-    "watch-scss": "powershell sass scss:styles app/globals.scss:app/globals.css --no-source-map --watch",
-    "compile-scss": "powershell sass.ps1 scss:styles app/globals.scss:app/globals.css --no-source-map",
+    "watch-scss": "sass scss:styles app/globals.scss:app/globals.css --no-source-map --watch",
+    "compile-scss": "sass scss:styles app/globals.scss:app/globals.css --no-source-map",
     "depcheck": "powershell depcheck",
     "upgrade": "npm i next@latest react@latest react-dom@latest eslint-config-next@latest @types/react@latest @types/react-dom@latest"
   },
