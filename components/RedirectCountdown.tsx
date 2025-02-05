@@ -16,24 +16,19 @@ const RedirectCountdown = ({
   const [count, setCount] = useState(startingCount);
 
   useEffect(() => {
-    let redirect = false;
-    const interval = setInterval(() => {
-      if (redirect) router.push(redirectPath);
-      setCount((prevCount) => {
-        if (prevCount < 1) {
-          redirect = true;
-        }
-        if (prevCount <= 0) return prevCount;
-        return prevCount - 1;
-      });
+    const timer = setInterval(() => {
+      if (count === 0) router.push(redirectPath);
+      else {
+        setCount((prevCount) => {
+          return prevCount - 1;
+        });
+      }
     }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+    return () => clearInterval(timer);
+  }, [redirectPath]);
 
-  return `${count} ${count === 1 ? "second" : "seconds  "}`;
+  return `${count} ${count === 1 ? "second" : "seconds"}`;
 };
 
 export default RedirectCountdown;
