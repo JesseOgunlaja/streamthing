@@ -98,7 +98,12 @@ const EmailComponent = ({
       <body>
         <div className="page">
           <div className="email-container">
-            {/* <img className="logo" src="/light-theme-logo.png" alt="Logo" /> */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="logo"
+              src="streamthing.dev/light-theme-logo.png"
+              alt="Logo"
+            />
             <h1 className="title">Welcome to Streamthing!</h1>
             <p className="description">{descriptionText}</p>
             <a href={link} className="button">
