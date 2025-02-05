@@ -17,13 +17,8 @@ const Page = () => {
       </div>
       <p id={styles.disclaimer}>
         By clicking Sign in, you agree to the{" "}
-        <Link href="/terms-of-service.html" prefetch={false}>
-          Terms of Service
-        </Link>{" "}
-        and{" "}
-        <Link href="/privacy-policy.html" prefetch={false}>
-          Privacy Policy
-        </Link>
+        <Link href="/terms-of-service">Terms of Service</Link> and{" "}
+        <Link href="/privacy-policy">Privacy Policy</Link>
       </p>
     </main>
   );
