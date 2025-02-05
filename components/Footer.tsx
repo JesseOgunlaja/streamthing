@@ -9,11 +9,11 @@ const Footer = () => {
           <p>&copy; 2025 Streamthing. All rights reserved.</p>
         </li>
         <li>
-          <Link href="/terms-of-service" prefetch={false}>
+          <Link href="/terms-of-service.html" prefetch={false}>
             Terms
           </Link>
           <hr />
-          <Link href="/privacy-policy" prefetch={false}>
+          <Link href="/privacy-policy.html" prefetch={false}>
             Privacy
           </Link>
         </li>
