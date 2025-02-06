@@ -7,8 +7,8 @@ import { UserType } from "@/lib/types";
 import { generateUUID } from "@/lib/utils";
 import { EmailSchema, PasswordSchema } from "@/lib/zod/user";
 import { isValid } from "@/lib/zod/utils";
-import { waitUntil } from "@vercel/functions";
 import { hash as hashPassword } from "bcryptjs";
+import { after } from "next/server";
 import { createProfilePicture } from "../lib/lib";
 import { sendEmail } from "../lib/utils";
 
@@ -86,7 +86,7 @@ export async function signup(email: string, password: string) {
   const verifyEmailJWT = await signJWT({ email, type: "verify email" }, "1h");
   const link = `${env.NEXT_PUBLIC_BASE_URL}/verify-email?jwt=${verifyEmailJWT}`;
 
-  waitUntil(
+  after(
     sendEmail(email, "Verify your account", {
       link,
     })

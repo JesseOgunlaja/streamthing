@@ -4,8 +4,8 @@ import { isSignedIn, signJWT } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { EmailSchema } from "@/lib/zod/user";
 import { isValid } from "@/lib/zod/utils";
-import { waitUntil } from "@vercel/functions";
 import { cookies } from "next/headers";
+import { after } from "next/server";
 import { sendEmail } from "../lib/utils";
 
 export async function editEmail(email: string) {
@@ -32,7 +32,7 @@ export async function editEmail(email: string) {
     "1h"
   );
 
-  waitUntil(
+  after(
     sendEmail(email, "update email", {
       link: `${env.NEXT_PUBLIC_BASE_URL}/set-new-email?jwt=${jwt}`,
     })

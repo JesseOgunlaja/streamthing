@@ -22,7 +22,6 @@
     "@upstash/ratelimit": "^2.0.4",
     "@upstash/redis": "^1.34.3",
     "@vercel/analytics": "^1.4.1",
-    "@vercel/functions": "^2.0.0",
     "@vercel/speed-insights": "^1.1.0",
     "bcryptjs": "^2.4.3",
     "browser-image-compression": "^2.0.2",
