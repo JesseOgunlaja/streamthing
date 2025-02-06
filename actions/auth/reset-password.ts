@@ -6,6 +6,7 @@ import { getUserByEmail, kv } from "@/lib/redis";
 import { generateRandomNumbers } from "@/lib/utils";
 import { PasswordSchema } from "@/lib/zod/user";
 import { isValid } from "@/lib/zod/utils";
+import { waitUntil } from "@vercel/functions";
 import { hash as hashPassword } from "bcryptjs";
 import { sendEmail } from "../lib/utils";
 
@@ -29,11 +30,14 @@ export async function sendResetPasswordEmail(email: string) {
 
   const jwt = promiseResults[1];
 
-  await sendEmail(email, "Reset password request", {
-    link: `${env.NEXT_PUBLIC_BASE_URL}/reset-password?code=${jwt}`,
-    linkText: "Reset password",
-    descriptionText: "You can reset your password by clicking the button below",
-  });
+  waitUntil(
+    sendEmail(email, "Reset password request", {
+      link: `${env.NEXT_PUBLIC_BASE_URL}/reset-password?code=${jwt}`,
+      linkText: "Reset password",
+      descriptionText:
+        "You can reset your password by clicking the button below",
+    })
+  );
 
   return {
     ok: true,

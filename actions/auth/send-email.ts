@@ -3,6 +3,7 @@
 import { isSignedIn, signJWT } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { RateLimitError, rateLimit } from "@/lib/ratelimit";
+import { waitUntil } from "@vercel/functions";
 import { cookies } from "next/headers";
 import { sendEmail } from "../lib/utils";
 
@@ -35,9 +36,11 @@ export async function resendVerificationEmail() {
     const BASE_URL = env.NEXT_PUBLIC_BASE_URL;
     const link = `${BASE_URL}/verify-email?jwt=${jwt}`;
 
-    await sendEmail(email, "Verify your email", {
-      link,
-    });
+    waitUntil(
+      sendEmail(email, "Verify your email", {
+        link,
+      })
+    );
 
     return {
       ok: true,
