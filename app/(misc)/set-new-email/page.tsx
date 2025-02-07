@@ -1,6 +1,6 @@
 import { createSessionId, decodeJWT, signJWT } from "@/lib/auth";
 import { encryptString } from "@/lib/encryption";
-import { kv } from "@/lib/redis";
+import { getUserByEmail, kv } from "@/lib/redis";
 import { stripeInstance } from "@/lib/stripe";
 import { GenericObject, UserType } from "@/lib/types";
 import { NewEmailVerificationJWTSchema } from "@/lib/zod/jwt";
@@ -24,6 +24,10 @@ export default async function Page({ searchParams }: PropsType) {
     const { user, newEmail } = decodedJWT;
     const key = `user-${user.email}`;
     const newEmailString = JSON.stringify(newEmail);
+
+    if (await getUserByEmail(newEmail)) {
+      throw new Error("There's already a user with this email");
+    }
 
     const KVPipeline = kv.main.pipeline();
     KVPipeline.json.set(key, "$", {
