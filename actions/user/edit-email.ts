@@ -33,7 +33,7 @@ export async function editEmail(email: string) {
   );
 
   after(
-    sendEmail(email, "update email", {
+    sendEmail(email, "Update email", {
       link: `${env.NEXT_PUBLIC_BASE_URL}/set-new-email?jwt=${jwt}`,
     })
   );
