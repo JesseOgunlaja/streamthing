@@ -6,7 +6,7 @@ import { createTransport } from "nodemailer";
 import { ComponentProps } from "react";
 
 const transporter = createTransport({
-  host: "mail.streamthing.dev",
+  host: "in-v3.mailjet.com",
   port: 587,
   auth: {
     user: env.EMAIL_USERNAME,
