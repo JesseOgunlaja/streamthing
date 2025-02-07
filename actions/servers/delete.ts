@@ -25,15 +25,15 @@ export async function deleteServer(serverID: string) {
     };
   }
 
-  const kvPipeline = kv.main.pipeline();
+  const KVPipeline = kv.main.pipeline();
   user.servers.splice(indexOf(user.servers, server), 1);
-  kvPipeline.json.del(`server-${serverID}`);
-  kvPipeline.json.set(
+  KVPipeline.json.del(`server-${serverID}`);
+  KVPipeline.json.set(
     `user-${user.email}`,
     "$.servers",
     JSON.stringify(user.servers)
   );
-  await kvPipeline.exec();
+  await KVPipeline.exec();
 
   fetch(`${serversByRegion[server.region]}/reset-server-cache/${serverID}`, {
     method: "POST",

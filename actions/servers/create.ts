@@ -59,11 +59,11 @@ export async function createServer(name: string, region: string) {
 
   const newServers = [...currentServers, newServer];
 
-  const kvPipeline = kv.main.pipeline();
-  kvPipeline.json.set(serverKey, "$", newServer);
-  kvPipeline.json.set(userKey, "$.servers", JSON.stringify(newServers));
+  const KVPipeline = kv.main.pipeline();
+  KVPipeline.json.set(serverKey, "$", newServer);
+  KVPipeline.json.set(userKey, "$.servers", JSON.stringify(newServers));
 
-  await kvPipeline.exec();
+  await KVPipeline.exec();
 
   return {
     message: "Successfully created server",
