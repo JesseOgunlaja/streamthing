@@ -4,6 +4,7 @@ import { serversByRegion } from "@/constants/constants";
 import { isSignedIn } from "@/lib/auth";
 import { kv } from "@/lib/redis";
 import { cookies } from "next/headers";
+import { after } from "next/server";
 
 export async function editServerName(serverID: string, newName: string) {
   const access_token = (await cookies()).get("access_token")?.value || "";
@@ -33,13 +34,18 @@ export async function editServerName(serverID: string, newName: string) {
     "$.servers",
     JSON.stringify(user.servers)
   );
-  await KVPipeline.exec();
 
-  fetch(`${serversByRegion[server.region]}/reset-server-cache/${serverID}`, {
-    method: "POST",
-    headers: {
-      authorization: server.password,
-    },
+  after(async () => {
+    await KVPipeline.exec();
+    await fetch(
+      `${serversByRegion[server.region]}/reset-server-cache/${serverID}`,
+      {
+        method: "POST",
+        headers: {
+          authorization: server.password,
+        },
+      }
+    );
   });
 
   return {

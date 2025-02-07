@@ -5,6 +5,7 @@ import { isSignedIn } from "@/lib/auth";
 import { kv } from "@/lib/redis";
 import { generateRandomString } from "@/lib/utils";
 import { cookies } from "next/headers";
+import { after } from "next/server";
 
 export async function resetServerPassword(serverID: string) {
   const access_token = (await cookies()).get("access_token")?.value || "";
@@ -24,29 +25,30 @@ export async function resetServerPassword(serverID: string) {
     };
   }
 
-  await fetch(
-    `${serversByRegion[server.region]}/reset-server-cache/${serverID}`,
-    {
-      method: "POST",
-      headers: {
-        authorization: server.password,
-      },
-    }
-  );
-
   server.password = generateRandomString(32);
-  const kvPipeline = kv.main.pipeline();
-  kvPipeline.json.set(
+  const KVPipeline = kv.main.pipeline();
+  KVPipeline.json.set(
     `server-${serverID}`,
     "$.password",
     JSON.stringify(server.password)
   );
-  kvPipeline.json.set(
+  KVPipeline.json.set(
     `user-${user.email}`,
     "$.servers",
     JSON.stringify(user.servers)
   );
-  await kvPipeline.exec();
+  after(async () => {
+    await KVPipeline.exec();
+    await fetch(
+      `${serversByRegion[server.region]}/reset-server-cache/${serverID}`,
+      {
+        method: "POST",
+        headers: {
+          authorization: server.password,
+        },
+      }
+    );
+  });
 
   return {
     ok: true,

@@ -5,6 +5,7 @@ import { kv } from "@/lib/redis";
 import { NameSchema } from "@/lib/zod/user";
 import { isValid } from "@/lib/zod/utils";
 import { cookies } from "next/headers";
+import { after } from "next/server";
 
 export async function editName(newName: string) {
   const access_token = (await cookies()).get("access_token")?.value || "";
@@ -25,10 +26,8 @@ export async function editName(newName: string) {
     };
   }
 
-  await kv.main.json.set(
-    `user-${user.email}`,
-    "$.name",
-    JSON.stringify(newName)
+  after(
+    kv.main.json.set(`user-${user.email}`, "$.name", JSON.stringify(newName))
   );
 
   return {

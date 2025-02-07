@@ -1,11 +1,12 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { isSignedIn } from "@/lib/auth";
 import { kv } from "@/lib/redis";
 import { PasswordSchema } from "@/lib/zod/user";
 import { isValid } from "@/lib/zod/utils";
 import { hash as hashPassword } from "bcryptjs";
+import { cookies } from "next/headers";
+import { after } from "next/server";
 
 export async function addPassword(password: string) {
   const access_token = (await cookies()).get("access_token")?.value || "";
@@ -31,11 +32,13 @@ export async function addPassword(password: string) {
 
   const hashedPassword = await hashPassword(password, 10);
 
-  await kv.main.json.set(`user-${user.email}`, "$", {
-    ...user,
-    auth: [...user.auth, "Internal"],
-    password: hashedPassword,
-  });
+  after(
+    kv.main.json.set(`user-${user.email}`, "$", {
+      ...user,
+      auth: [...user.auth, "Internal"],
+      password: hashedPassword,
+    })
+  );
 
   return {
     ok: true,

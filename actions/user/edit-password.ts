@@ -6,6 +6,7 @@ import { PasswordSchema } from "@/lib/zod/user";
 import { isValid } from "@/lib/zod/utils";
 import { compare as comparePasswords, hash as hashPassword } from "bcryptjs";
 import { cookies } from "next/headers";
+import { after } from "next/server";
 
 export async function editPassword(oldPassword: string, newPassword: string) {
   const access_token = (await cookies()).get("access_token")?.value || "";
@@ -33,10 +34,12 @@ export async function editPassword(oldPassword: string, newPassword: string) {
   }
 
   const hashedPassword = await hashPassword(newPassword, 10);
-  kv.main.json.set(
-    `user-${user.email}`,
-    "$.password",
-    JSON.stringify(hashedPassword)
+  after(
+    kv.main.json.set(
+      `user-${user.email}`,
+      "$.password",
+      JSON.stringify(hashedPassword)
+    )
   );
 
   return {
