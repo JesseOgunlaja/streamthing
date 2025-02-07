@@ -22,5 +22,7 @@
     }
   }
 
-  @include pricing-cards.pricing-cards(pointer);
+  .pricing-cards {
+    @include pricing-cards.pricing-cards(pointer);
+  }
 }
