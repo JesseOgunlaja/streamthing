@@ -11,7 +11,6 @@ import { sendEmail } from "../lib/utils";
 
 export async function editEmail(email: string) {
   const access_token = (await cookies()).get("access_token")?.value || "";
-  let success = false;
   const { user, signedIn } = await isSignedIn(access_token);
 
   if (!signedIn) {
@@ -41,14 +40,12 @@ export async function editEmail(email: string) {
     "1h"
   );
 
-  after(() => {
-    if (!success) return;
+  after(
     sendEmail(email, "Update email", {
       link: `${env.NEXT_PUBLIC_BASE_URL}/set-new-email?jwt=${jwt}`,
-    });
-  });
+    })
+  );
 
-  success = true;
   return {
     ok: true,
     message: "Successfully sent email",
