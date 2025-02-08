@@ -23,28 +23,6 @@ export async function signup(email: string, password: string) {
   const user = await getUserByEmail(email);
 
   if (user) {
-    if (user.auth.some((method) => method !== "Internal")) {
-      const hashedPassword = await hashPassword(password, 10);
-
-      await kv.main.json.set(`user-${email}`, "$", {
-        ...user,
-        auth: [...user.auth, "Internal"],
-        password: hashedPassword,
-      });
-
-      const sessionID = await createSessionId(email, user.id, "Internal");
-      const jwt = await signJWT({
-        sessionID,
-        type: "session",
-      });
-      await setSessionCookie(jwt, sessionID);
-
-      return {
-        ok: true,
-        message: "User registered",
-      } as const;
-    }
-
     return {
       ok: false,
       message: "User already exists",
@@ -52,6 +30,8 @@ export async function signup(email: string, password: string) {
   }
 
   const id = generateUUID();
+  console.log(email);
+  console.log(email[0]);
   const { imageURL, imageID } = await createProfilePicture(email[0], id);
 
   kv.main.json.set(
