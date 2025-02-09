@@ -1,6 +1,6 @@
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="100%" viewBox="0 0 184 188" enable-background="new 0 0 184 188" xml:space="preserve">
-<path fill="#FFFFFF" opacity="1.000000" stroke="none"
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" width="100%" viewBox="0 0 184 188" xml:space="preserve">
+<path fill="#FFFFFF" style="opacity: 1.000000;" stroke="none"
 	d="
 M1.000000,81.000000
 	C1.000000,54.000008 1.000000,27.500013 1.000000,1.000014
@@ -23,7 +23,7 @@ M144.768799,36.393433
 	C167.441956,71.339676 161.815857,59.896324 154.946030,48.198437
 	C152.949829,43.335354 150.939453,38.484726 144.768799,36.393433
 z"/>
-<path fill="#FDFEFE" opacity="1.000000" stroke="none"
+<path fill="#FDFEFE" style="opacity: 1.000000;" stroke="none"
 	d="
 M37.649487,148.813705
 	C32.402470,146.253586 29.276398,141.832703 27.247311,136.274902
@@ -54,7 +54,7 @@ M37.649487,148.813705
 	C77.447166,157.803833 60.342678,151.812576 45.125134,137.664459
 	C42.408802,141.715622 40.029144,145.264664 37.649487,148.813705
 z"/>
-<path fill="#055393" opacity="1.000000" stroke="none"
+<path fill="#055393" style="opacity: 1.000000;" stroke="none"
 	d="
 M37.988964,148.947510
 	C40.029144,145.264664 42.408802,141.715622 45.125134,137.664459
@@ -76,7 +76,7 @@ M37.988964,148.947510
 	C66.392456,167.107513 54.510410,160.964401 42.996170,153.556168
 	C41.217056,152.411469 39.873451,150.589874 37.988964,148.947510
 z"/>
-<path fill="#055393" opacity="1.000000" stroke="none"
+<path fill="#055393" style="opacity: 1.000000;" stroke="none"
 	d="
 M144.936188,36.694134
 	C142.636658,40.188122 140.169739,43.381409 137.352936,47.027622
