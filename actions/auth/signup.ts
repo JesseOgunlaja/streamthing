@@ -30,11 +30,10 @@ export async function signup(email: string, password: string) {
   }
 
   const id = generateUUID();
-  console.log(email);
-  console.log(email[0]);
   const { imageURL, imageID } = await createProfilePicture(email[0], id);
 
-  kv.main.json.set(
+  const KVPipeline = kv.main.pipeline();
+  KVPipeline.json.set(
     `user-${email}`,
     "$",
     {
@@ -56,14 +55,18 @@ export async function signup(email: string, password: string) {
     { nx: true }
   );
 
-  const sessionID = await createSessionId(email, id, "Internal");
+  const sessionID = await createSessionId(email, id, "Internal", KVPipeline);
   const jwt = await signJWT({
     sessionID,
     type: "session",
   });
-  await setSessionCookie(jwt, sessionID);
 
-  const verifyEmailJWT = await signJWT({ email, type: "verify email" }, "1h");
+  const promiseResults = await Promise.all([
+    setSessionCookie(jwt, sessionID),
+    signJWT({ email, type: "verify email" }, "1h"),
+  ]);
+
+  const verifyEmailJWT = promiseResults[1];
   const link = `${env.NEXT_PUBLIC_BASE_URL}/verify-email?jwt=${verifyEmailJWT}`;
 
   after(
