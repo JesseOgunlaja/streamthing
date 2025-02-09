@@ -41,5 +41,5 @@ export default async function Page({ searchParams }: PropsType) {
     );
   }
 
-  redirect("/home");
+  redirect("/dashboard");
 }
