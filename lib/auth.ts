@@ -54,11 +54,10 @@ export async function setSessionCookie(jwt: string, sessionID?: string) {
 export async function createSessionId(
   email: string,
   id: string,
-  auth: "Internal" | "GitHub",
-  pipeline?: ReturnType<typeof kv.sessions.pipeline>
+  auth: "Internal" | "GitHub"
 ) {
   const sessionID = generateUUID();
-  const KVPipeline = pipeline || kv.sessions.pipeline();
+  const KVPipeline = kv.sessions.pipeline();
   KVPipeline.json.set(sessionID, "$", {
     email,
     id,

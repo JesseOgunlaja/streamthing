@@ -32,41 +32,40 @@ export async function signup(email: string, password: string) {
   const id = generateUUID();
   const { imageURL, imageID } = await createProfilePicture(email[0], id);
 
-  const KVPipeline = kv.main.pipeline();
-  KVPipeline.json.set(
-    `user-${email}`,
-    "$",
-    {
-      email,
-      name: email.split("@")[0],
-      id,
-      password: await hashPassword(password, 10),
-      verified: false,
-      auth: ["Internal"],
-      githubID: "",
-      githubLogin: "",
-      servers: [],
-      plan: "Pending",
-      profilePicture: imageURL,
-      profilePictureID: imageID,
-      stripe_subscription_id: "",
-      stripe_customer_id: "",
-    } satisfies UserType,
-    { nx: true }
-  );
-
-  const sessionID = await createSessionId(email, id, "Internal", KVPipeline);
+  const [, sessionID] = await Promise.all([
+    kv.main.json.set(
+      `user-${email}`,
+      "$",
+      {
+        email,
+        name: email.split("@")[0],
+        id,
+        password: await hashPassword(password, 10),
+        verified: false,
+        auth: ["Internal"],
+        githubID: "",
+        githubLogin: "",
+        servers: [],
+        plan: "Pending",
+        profilePicture: imageURL,
+        profilePictureID: imageID,
+        stripe_subscription_id: "",
+        stripe_customer_id: "",
+      } satisfies UserType,
+      { nx: true }
+    ),
+    createSessionId(email, id, "Internal"),
+  ]);
   const jwt = await signJWT({
     sessionID,
     type: "session",
   });
 
-  const promiseResults = await Promise.all([
+  const [, verifyEmailJWT] = await Promise.all([
     setSessionCookie(jwt, sessionID),
     signJWT({ email, type: "verify email" }, "1h"),
   ]);
 
-  const verifyEmailJWT = promiseResults[1];
   const link = `${env.NEXT_PUBLIC_BASE_URL}/verify-email?jwt=${verifyEmailJWT}`;
 
   after(
