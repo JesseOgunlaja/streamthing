@@ -20,10 +20,10 @@ export async function editEmail(email: string) {
     };
   }
 
-  if (!(await getUserByEmail(email))) {
+  if (await getUserByEmail(email)) {
     return {
       ok: true,
-      message: "Successfully sent email",
+      message: "There's an account with this email",
     };
   }
 
