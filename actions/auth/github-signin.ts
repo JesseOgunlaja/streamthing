@@ -35,10 +35,15 @@ export async function signUpWithGithub(code: string) {
     const KVPipeline = kv.main.pipeline();
     const newUserID = generateUUID();
 
-    KVPipeline.json.set(
-      `user-${email}`,
-      "$",
-      {
+    if (currentUser) {
+      KVPipeline.json.set(`user-${email}`, "$", {
+        ...currentUser,
+        auth: [...currentUser.auth, "GitHub"],
+        githubID: github_id,
+        githubLogin: github_login,
+      });
+    } else {
+      KVPipeline.json.set(`user-${email}`, "$", {
         name,
         email,
         id: newUserID,
@@ -53,23 +58,12 @@ export async function signUpWithGithub(code: string) {
         stripe_customer_id: "",
         stripe_subscription_id: "",
         servers: [],
-      } satisfies UserType,
-      { nx: true }
-    );
-
+      } satisfies UserType);
+    }
     KVPipeline.json.set(`github-${github_id}`, "$", {
       email,
       id: currentUser?.id || newUserID,
     });
-
-    if (currentUser) {
-      KVPipeline.json.set(`user-${email}`, "$", {
-        ...currentUser,
-        auth: [...currentUser.auth, "GitHub"],
-        githubID: github_id,
-        githubLogin: github_login,
-      });
-    }
 
     await KVPipeline.exec();
     await setSession(email, currentUser?.id || newUserID);
