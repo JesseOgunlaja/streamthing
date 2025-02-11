@@ -1,20 +1,18 @@
 import { cookies, headers } from "next/headers";
-import React from "react";
 import { decodeJWT, readIdentifier } from "./auth";
+import { cache } from "./cache";
 import { env } from "./env";
 import { getUserByEmail, kv } from "./redis";
 import { GenericValue, UserType } from "./types";
 import { AccessTokenJWTSchema } from "./zod/jwt";
 
-let user: UserType | null = null;
-
-export const getUserFromHeaders = React.cache(async () => {
+export const getUserFromHeaders = cache(async () => {
   const fetchedUser = JSON.parse(
     (await headers()).get("user") as string
   ) as UserType | null;
-  if (fetchedUser) user = fetchedUser;
-  if (user) return user;
+  if (fetchedUser) return fetchedUser;
 
+  await kv.temp.incr("user-lookup-count");
   const { identifier } = AccessTokenJWTSchema.parse(
     await decodeJWT((await cookies()).get("access_token")?.value as string)
   );
@@ -44,5 +42,10 @@ export async function setUserValue(
 }
 
 export async function getIP() {
-  return (await headers()).get("x-forwarded-for") || "127.0.0.1";
+  const headersInstance = await headers();
+  return (
+    headersInstance.get("CF-Connecting-IP") ||
+    headersInstance.get("x-forwarded-for") ||
+    "127.0.0.1"
+  );
 }

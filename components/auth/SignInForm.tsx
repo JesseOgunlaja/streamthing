@@ -3,15 +3,15 @@
 import { signUpWithGithub } from "@/actions/auth/github-signin";
 import { signin_internal } from "@/actions/auth/signin";
 import useGitHubOAuth from "@/hooks/useGitHubOAuth";
+import { cache } from "@/lib/cache";
 import { promiseToast } from "@/lib/lib";
 import { FormSubmit } from "@/lib/types";
 import { getFormValues } from "@/lib/utils";
 import styles from "@/styles/auth-form.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
 import ForgetPasswordExpand from "./ForgetPasswordExpand";
 
-const signin = React.cache(signin_internal);
+const signin = cache(signin_internal, 20);
 
 const SignInForm = () => {
   const router = useRouter();
