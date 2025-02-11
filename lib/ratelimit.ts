@@ -64,13 +64,10 @@ export function rateLimit<F extends GenericObject>(config: RateLimitConfig<F>) {
     throw new RateLimitError(config.errorResponse);
   }
 
-  if (!config.limitOnErrorsOnly) {
-    incrementRateLimitCount(key, config);
-    return;
-  }
+  if (!config.limitOnErrorsOnly) incrementRateLimitCount(key, config);
 
   return {
-    incrementOnError: () => {
+    incrementRatelimit: () => {
       incrementRateLimitCount(key, config);
     },
   };
@@ -80,5 +77,5 @@ export async function rateLimitByIP<T extends GenericObject>(
   config: Omit<RateLimitConfig<T>, "key">
 ) {
   const ip = await getIP();
-  rateLimit({ ...config, key: ip });
+  return rateLimit({ ...config, key: ip });
 }
