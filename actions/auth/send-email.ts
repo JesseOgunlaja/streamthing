@@ -50,7 +50,7 @@ export async function resendVerificationEmail() {
     if (err instanceof RateLimitError) {
       return {
         ok: false,
-        message: "Ratelimited, plase try again later",
+        message: "Ratelimited, please try again later",
       };
     }
 
