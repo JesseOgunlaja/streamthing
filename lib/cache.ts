@@ -30,7 +30,7 @@ export function cacheWithDuration<T extends (..._args: any[]) => Promise<any>>(
     const cacheKey = `${params.join("BREAK")}`;
     const now = Date.now();
     const existingEntry = cacheMap.get(cacheKey);
-    if (existingEntry?.expiry < now) return existingEntry.result;
+    if (existingEntry?.expiry > now) return existingEntry.result;
 
     const result = await fn(...params);
     cacheMap.set(cacheKey, { result, expiry: now + duration * 1000 });
