@@ -13,7 +13,6 @@ const ServerCode = () => {
           id: env.SERVER_ID,
           region: env.SERVER_REGION,
           password: env.SERVER_PASSWORD,
-          encryptionKey: env.SERVER_ENCRYPTION_KEY,
         });
 
         // Route handler

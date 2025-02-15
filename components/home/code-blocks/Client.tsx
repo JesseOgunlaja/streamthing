@@ -7,13 +7,12 @@ const ClientCode = () => {
       code={`
         import { createClientStream } from "streamthing";
 
-          const stream = createClientStream({
-            channel: "main",
-            id: env.SERVER_ID,
-            region: env.SERVER_REGION,
-            password: env.SERVER_PASSWORD,
-            encryptionKey: env.SERVER_ENCRYPTION_KEY,
-        })
+          const stream = await createClientStream(env.SERVER_REGION)
+          const res = await fetch("/api/get-token?id=" + stream.id);
+          const { token } = await res.json();
+
+          // Authenticate stream
+          stream.authenticate(token);
 
           stream.receive("event", (message) => {
             console.log(message);
