@@ -1,7 +1,6 @@
 "use server";
 
 import { isSignedIn } from "@/lib/auth";
-import { encryptString } from "@/lib/encryption";
 import { env } from "@/lib/env";
 import { stripeInstance } from "@/lib/stripe";
 import { cookies } from "next/headers";
@@ -15,7 +14,7 @@ export async function getNewPaymentMethodClientSecret() {
     const { stripe_customer_id: customer } = user;
 
     const success_message = encodeURIComponent(
-      encryptString("Successfully added payment method")
+      "Successfully added payment method"
     );
     const session = await stripeInstance.checkout.sessions.create({
       ui_mode: "embedded",

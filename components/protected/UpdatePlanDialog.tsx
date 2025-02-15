@@ -3,7 +3,6 @@ import {
   updateSubscriptionPlan,
 } from "@/actions/stripe/update-plan";
 import { BillingMethod } from "@/constants/billing";
-import { encryptString } from "@/lib/encryption";
 import { promiseToast } from "@/lib/lib";
 import { GenericFunction } from "@/lib/types";
 import styles from "@/styles/protected/update-plan.module.css";
@@ -54,9 +53,7 @@ const UpdatePlanDialog = ({ open, close }: PropsType) => {
 
     promiseToast(promise, {
       successFunction: () => {
-        const successMessage = encryptString(
-          `Successfully moved to ${plan} plan`
-        );
+        const successMessage = "Successfully moved to " + plan + " plan";
         router.push(`/dashboard?success_message=${successMessage}`);
       },
     });

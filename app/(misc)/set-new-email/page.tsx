@@ -1,5 +1,4 @@
 import { createSessionId, decodeJWT, signJWT } from "@/lib/auth";
-import { encryptString } from "@/lib/encryption";
 import { getUserByEmail, kv } from "@/lib/redis";
 import { stripeInstance } from "@/lib/stripe";
 import { GenericObject, UserType } from "@/lib/types";
@@ -78,9 +77,7 @@ export default async function Page({ searchParams }: PropsType) {
     );
   }
 
-  const successMessage = encodeURIComponent(
-    encryptString("Successfully verified new email")
-  );
+  const successMessage = encodeURIComponent("Successfully verified new email");
   redirect(
     `/dashboard?success_message=${successMessage}&auth=params&session=${sessionJWT}`
   );
