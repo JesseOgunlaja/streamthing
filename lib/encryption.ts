@@ -1,7 +1,7 @@
 import CryptoJS from "crypto-js";
 import { env } from "./env";
 
-const ENCRYPTION_KEY = env.NEXT_PUBLIC_ENCRYPTION_KEY;
+const ENCRYPTION_KEY = env.ENCRYPTION_KEY;
 
 export function encryptString(value: string) {
   return CryptoJS.AES.encrypt(value, ENCRYPTION_KEY).toString();

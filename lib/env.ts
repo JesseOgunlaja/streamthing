@@ -6,11 +6,11 @@ export const env = createEnv({
     NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID: z.string(),
     NEXT_PUBLIC_GITHUB_OAUTH_SCOPES: z.string(),
     NEXT_PUBLIC_STRIPE_PUBLIC_KEY: z.string(),
-    NEXT_PUBLIC_ENCRYPTION_KEY: z.string(),
     NEXT_PUBLIC_BASE_URL: z.string(),
   },
   server: {
     GITHUB_OAUTH_SECRET: z.string(),
+    ENCRYPTION_KEY: z.string(),
     REDIS_URL: z.string().url(),
     REDIS_TOKEN: z.string(),
     REDIS_STRIPE_URL: z.string().url(),
@@ -30,7 +30,7 @@ export const env = createEnv({
     REDIS_URL: process.env.REDIS_URL,
     REDIS_TOKEN: process.env.REDIS_TOKEN,
     GITHUB_OAUTH_SECRET: process.env.GITHUB_OAUTH_SECRET,
-    NEXT_PUBLIC_ENCRYPTION_KEY: process.env.NEXT_PUBLIC_ENCRYPTION_KEY,
+    ENCRYPTION_KEY: process.env.NEXT_PUBLIC_ENCRYPTION_KEY,
     NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID:
       process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID,
     NEXT_PUBLIC_GITHUB_OAUTH_SCOPES:
