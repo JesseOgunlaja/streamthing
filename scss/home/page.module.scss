@@ -106,7 +106,22 @@
     justify-self: center;
     width: 100%;
     margin: 0 auto;
-    margin-bottom: 40px;
+    display: grid;
+    margin-bottom: 20px;
+    a {
+      grid-row: 2;
+      width: 90%;
+      margin: 0 auto;
+      color: white;
+      background: var(--nice-blue);
+      cursor: pointer;
+      font-size: 19px;
+      font-weight: 500;
+      padding: 10px 30px;
+      border-radius: 25px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
     @include pricing-cards.pricing-cards(default);
   }
 
