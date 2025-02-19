@@ -493,7 +493,6 @@
   justify-self: center;
   width: 100%;
   margin: 0 auto;
-  display: grid;
   margin-bottom: 20px;
   display: grid;
   grid-template-columns: repeat(4, min(22%, 375px));
@@ -504,9 +503,8 @@
   padding: 5px;
 }
 #page .pricing-cards a {
-  grid-row: 2;
   width: 90%;
-  margin: 0 auto;
+  margin-top: 20px;
   color: white;
   background: var(--nice-blue);
   cursor: pointer;
@@ -514,8 +512,6 @@
   font-weight: 500;
   padding: 10px 30px;
   border-radius: 25px;
-  text-align: center;
-  margin-bottom: 15px;
 }
 #page .pricing-cards .pricing-card {
   cursor: default;
@@ -523,7 +519,7 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
-  max-height: 500px;
+  max-height: 550px;
   padding: 12.5px;
   padding-top: 40px;
   border-radius: 10px;

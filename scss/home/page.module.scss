@@ -106,12 +106,10 @@
     justify-self: center;
     width: 100%;
     margin: 0 auto;
-    display: grid;
     margin-bottom: 20px;
     a {
-      grid-row: 2;
       width: 90%;
-      margin: 0 auto;
+      margin-top: 20px;
       color: white;
       background: var(--nice-blue);
       cursor: pointer;
@@ -119,8 +117,6 @@
       font-weight: 500;
       padding: 10px 30px;
       border-radius: 25px;
-      text-align: center;
-      margin-bottom: 15px;
     }
     @include pricing-cards.pricing-cards(default);
   }

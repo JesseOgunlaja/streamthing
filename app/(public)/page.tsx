@@ -8,7 +8,6 @@ import { subscriptionPlansArray } from "@/constants/plans";
 import styles from "@/styles/home/page.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 export default function Home() {
   return (
@@ -43,15 +42,14 @@ export default function Home() {
       </h2>
       <div className={styles["pricing-cards"]}>
         {subscriptionPlansArray.map((plan) => (
-          <React.Fragment key={plan.title}>
-            <PricingCard
-              hoverEffect={false}
-              styles={styles}
-              key={plan.title}
-              {...plan}
-            />
+          <PricingCard
+            hoverEffect={false}
+            styles={styles}
+            key={plan.title}
+            {...plan}
+          >
             <Link href="/signup">Get started now</Link>
-          </React.Fragment>
+          </PricingCard>
         ))}
       </div>
     </div>

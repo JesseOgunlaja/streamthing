@@ -8,6 +8,7 @@ type PropsType = (typeof subscriptionPlansArray)[0] & {
   styles: GenericObject<string>;
   hoverEffect?: boolean;
   onClick?: GenericFunction;
+  children?: React.ReactNode;
 };
 
 const PricingCard = ({
@@ -19,6 +20,7 @@ const PricingCard = ({
   annualPrice,
   styles,
   onClick,
+  children,
   hoverEffect = true,
 }: PropsType) => {
   return (
@@ -72,6 +74,7 @@ const PricingCard = ({
           {limits.servers === 1 ? "Server" : "Servers"}
         </div>
       </div>
+      {children}
     </article>
   );
 };
