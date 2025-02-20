@@ -1,5 +1,7 @@
 import { utapi } from "@/app/api/uploadthing/core";
+import { env } from "@/lib/env";
 import { getContrast } from "polished";
+import { UTFile } from "uploadthing/server";
 
 export async function createProfilePicture(letter: string, id: string) {
   const size = 200;
@@ -12,11 +14,14 @@ export async function createProfilePicture(letter: string, id: string) {
 
   const svgBuffer = Buffer.from(svgContent);
   const fileName = `profile-picture-${id}.svg`;
-  const fileOptions = { type: "image/svg+xml" };
-  const file = new File([svgBuffer], fileName, fileOptions);
+  const fileOptions = { type: "image/svg+xml", customId: fileName };
+  const file = new UTFile([svgBuffer], fileName, fileOptions);
 
   const { data } = await utapi.uploadFiles(file);
-  return { imageURL: data!.url, imageID: data!.key };
+  return {
+    imageURL: `https://${env.UPLOADTHING_APP_ID}.ufs.sh/f/${fileName}`,
+    imageID: data!.key,
+  };
 }
 
 export function getRandomColor(): string {

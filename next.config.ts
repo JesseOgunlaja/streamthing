@@ -1,9 +1,15 @@
 import type { NextConfig } from "next";
+import { env } from "./lib/env";
 
 const nextConfig = {
   reactStrictMode: false,
   images: {
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: `${env.UPLOADTHING_APP_ID}.ufs.sh`,
+        pathname: "/f/*",
+      },
       {
         protocol: "https",
         hostname: "utfs.io",

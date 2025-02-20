@@ -22,13 +22,9 @@ const EditProfilePicture = () => {
   }
 
   function uploadSuccess(file: UploadSuccess) {
-    const { url, key } = file[0];
-
     const promise = new Promise((resolve, reject) => {
-      uploadProfilePicture(url, key).then((data) => {
-        const { ok } = data;
-
-        if (ok) resolve("Successfully updated profile picture");
+      uploadProfilePicture(file[0].key).then((data) => {
+        if (data.ok) resolve("Successfully updated profile picture");
         else reject("An unexpected error occurred, please try again");
       });
     });
