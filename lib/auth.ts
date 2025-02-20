@@ -1,7 +1,7 @@
 import { access_token_config } from "@/constants/constants";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
-import React from "react";
+import { cache } from "./cache";
 import {
   decryptString,
   encryptString,
@@ -102,7 +102,7 @@ export async function isSignedIn(access_token: string | undefined) {
   }
 }
 
-export const cachedIsSignedIn = React.cache(isSignedIn);
+export const cachedIsSignedIn = cache(isSignedIn, { duration: 3 });
 
 export async function createAccessToken(session: string | undefined) {
   try {

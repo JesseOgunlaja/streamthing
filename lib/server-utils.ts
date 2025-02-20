@@ -1,12 +1,11 @@
 import { cookies, headers } from "next/headers";
 import { decodeJWT, readIdentifier } from "./auth";
-import { cache } from "./cache";
 import { env } from "./env";
 import { getUserByEmail, kv } from "./redis";
 import { GenericValue, UserType } from "./types";
 import { AccessTokenJWTSchema } from "./zod/jwt";
 
-export const getUserFromHeaders = cache(async () => {
+export async function getUserFromHeaders() {
   const fetchedUser = JSON.parse(
     (await headers()).get("user") as string
   ) as UserType | null;
@@ -17,7 +16,7 @@ export const getUserFromHeaders = cache(async () => {
   );
   const { email } = await readIdentifier(identifier);
   return (await getUserByEmail(email)) as UserType;
-});
+}
 
 export async function getPathname() {
   return (await headers())

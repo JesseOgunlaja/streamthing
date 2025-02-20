@@ -11,7 +11,7 @@ import styles from "@/styles/auth-form.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
 import ForgetPasswordExpand from "./ForgetPasswordExpand";
 
-const signin = cache(signin_internal, 20);
+const signin = cache(signin_internal, { duration: 20 });
 
 const SignInForm = () => {
   const router = useRouter();

@@ -1,5 +1,6 @@
 import { access_token_config } from "@/constants/constants";
 import { cachedIsSignedIn } from "@/lib/auth";
+import { getUserByEmail } from "@/lib/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { getAccessToken } from "./utils";
 
@@ -38,7 +39,7 @@ export async function handleProtectedRoute(
 ) {
   const pathname = request.nextUrl.pathname;
   const access_token = await getAccessToken(request, session);
-  const { signedIn, user } = await cachedIsSignedIn(access_token);
+  const { signedIn, user: cachedUser } = await cachedIsSignedIn(access_token);
   if (!signedIn) {
     const response = NextResponse.redirect(
       new URL(`/signin?redirect_url=${pathname}`, request.url)
@@ -47,6 +48,7 @@ export async function handleProtectedRoute(
     return response;
   }
 
+  const user = await getUserByEmail(cachedUser.email);
   const url = request.nextUrl.clone();
   url.searchParams.delete("auth");
   url.searchParams.delete("session");

@@ -1,31 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+const globalCache = new Map();
+
+interface CacheConfig {
+  duration?: number;
+  name?: string;
+}
+
 export function cache<T extends (..._args: any[]) => Promise<any>>(
   fn: T,
-  duration?: number
+  config?: CacheConfig
 ) {
-  if (duration) return cacheWithDuration(fn, duration) as T;
-  else return cacheWithoutDuration(fn) as T;
-}
+  const key = config?.name || fn.name;
+  if (!globalCache.has(key)) globalCache.set(key, new Map());
+  const cacheMap = globalCache.get(key);
 
-export function cacheWithoutDuration<
-  T extends (..._args: any[]) => Promise<any>,
->(fn: T) {
-  const cacheMap = new Map();
-  return async function (...params: Parameters<T>) {
-    const cacheKey = `${params.join("BREAK")}`;
-    if (cacheMap.has(cacheKey)) return cacheMap.get(cacheKey);
-
-    const result = await fn(...params);
-    cacheMap.set(cacheKey, result);
-    return result;
-  };
-}
-
-export function cacheWithDuration<T extends (..._args: any[]) => Promise<any>>(
-  fn: T,
-  duration: number
-) {
-  const cacheMap = new Map();
   return async function (...params: Parameters<T>) {
     const cacheKey = `${params.join("BREAK")}`;
     const now = Date.now();
@@ -33,7 +21,15 @@ export function cacheWithDuration<T extends (..._args: any[]) => Promise<any>>(
     if (existingEntry?.expiry > now) return existingEntry.result;
 
     const result = await fn(...params);
-    cacheMap.set(cacheKey, { result, expiry: now + duration * 1000 });
+    cacheMap.set(cacheKey, {
+      result,
+      expiry: now + (config?.duration ?? 5) * 1000,
+    });
+    globalCache.set(key, cacheMap);
     return result;
-  };
+  } as T;
+}
+
+export function clearCache(key: string) {
+  globalCache.delete(key);
 }
