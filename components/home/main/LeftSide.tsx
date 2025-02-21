@@ -7,7 +7,7 @@ const LeftSide = () => {
     <article className={styles["left-side"]}>
       <div className={styles["descriptions-container"]}>
         <p className={styles.slogan}>
-          Pusher alternative for developer by developers
+          Pusher alternative for developers by developers
         </p>
         <h1 className={styles["big-description"]}>
           <Balancer>
@@ -17,9 +17,9 @@ const LeftSide = () => {
         <br />
         <p className={styles["small-description"]}>
           <Balancer>
-            Streamthing offers lightning fast and effortlessly configurable
+            Streamthing offers lightning-fast and effortlessly configurable
             WebSocket servers tailored to meet your requirements, ensuring swift
-            deployment and enhanced realtime features for your application.
+            deployment and enhanced real-time features for your application.
           </Balancer>
         </p>
       </div>
