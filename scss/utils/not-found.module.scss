@@ -1,0 +1,28 @@
+#notFound {
+  main {
+    height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+
+    p {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    a {
+      background: var(--nice-blue);
+      color: white;
+      font-size: 22.5px;
+      padding: 7.5px min(30vw, 235px);
+      border-radius: 10px;
+    }
+  }
+
+  &:not(:has(nav)) main {
+    height: fit-content;
+    margin-top: 0px;
+  }
+}
