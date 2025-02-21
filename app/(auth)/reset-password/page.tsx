@@ -27,7 +27,7 @@ const Page = async ({ searchParams }: PropsType) => {
       </main>
     );
   } catch (err) {
-    return notFound();
+    notFound();
   }
 };
 

@@ -32,7 +32,7 @@ const Page = () => {
   if (user.plan !== "Pending") return router.push("/dashboard");
 
   const plan = searchParams.get("plan") as string | undefined;
-  if (!plan || !(plan in stripePricingTokens)) return notFound();
+  if (!plan || !(plan in stripePricingTokens)) notFound();
 
   return (
     <div id={styles["checkout-page"]}>
