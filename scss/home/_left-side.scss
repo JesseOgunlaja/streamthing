@@ -10,8 +10,10 @@
     width: fit-content;
   }
   .descriptions-container {
+    margin-bottom: 15px;
     .big-description {
       font-size: 55px;
+      margin-bottom: 10px;
       font-weight: 500;
       width: 97%;
 
@@ -20,7 +22,7 @@
       }
     }
     .small-description {
-      font-size: 20.5px;
+      font-size: 19.5px;
     }
   }
   .get-started-text {

@@ -14,19 +14,23 @@ const LeftSide = () => {
             Your <span>WebSocket</span> platform for Node JS and beyond
           </Balancer>
         </h1>
-        <br />
         <p className={styles["small-description"]}>
-          <Balancer>
-            Streamthing offers lightning-fast and effortlessly configurable
+          {/* Streamthing offers lightning-fast and effortlessly configurable
             WebSocket servers tailored to meet your requirements, ensuring swift
-            deployment and enhanced real-time features for your application.
-          </Balancer>
+            deployment and enhanced real-time features for your application.  */}
+          {/* Streamthing provides lightning-fast WebSocket servers that are
+            incredibly easy to configure. What makes it different? - its
+            simplicity, allowing developers to quickly implement real-time
+            functionality in their apps. */}
+          Developers deserve better than Pusher. That&apos;s why we created
+          Streamthing, an easier and more cost-effective alternative. Whether
+          you&apos;re creating a chat app or a real-time dashboard, we&apos;ll
+          meet your needs.
         </p>
       </div>
-      <br />
       <div className={styles["get-started"]}>
         <p className={styles["get-started-text"]}>
-          <Balancer>See what you can build with Streamthing today.</Balancer>
+          See what you can build with Streamthing today.
         </p>
         <div className={styles["buttons"]}>
           <Link href="/signup" className={styles["get-started-button"]}>

@@ -34,8 +34,12 @@
   border: 1px solid var(--accent-color);
   width: fit-content;
 }
+#page main .left-side .descriptions-container {
+  margin-bottom: 15px;
+}
 #page main .left-side .descriptions-container .big-description {
   font-size: 55px;
+  margin-bottom: 10px;
   font-weight: 500;
   width: 97%;
 }
@@ -43,7 +47,7 @@
   color: var(--accent-color-2);
 }
 #page main .left-side .descriptions-container .small-description {
-  font-size: 20.5px;
+  font-size: 19.5px;
 }
 #page main .left-side .get-started-text {
   font-weight: 600;
@@ -82,10 +86,17 @@
   }
 }
 @media (width < 850px) {
+  #page main .left-side {
+    transform: translateY(-20px);
+  }
   #page main .left-side .slogan {
-    justify-self: center;
+    margin: 0 auto;
+  }
+  #page main .left-side .descriptions-container {
+    margin-bottom: 10px;
   }
   #page main .left-side .descriptions-container .big-description {
+    width: 100%;
     font-size: 34px;
     text-align: center;
   }
@@ -110,6 +121,9 @@
   }
 }
 @media (width < 600px) {
+  #page main .left-side .descriptions-container .small-description {
+    font-size: 17px;
+  }
   #page main .left-side .slogan {
     font-size: 12px;
     padding: 3px 7px;
@@ -133,7 +147,7 @@
     font-size: 32.5px;
   }
   #page main .left-side .descriptions-container .small-description {
-    font-size: 18.5px;
+    font-size: 16px;
   }
 }
 @media (width < 355px) {

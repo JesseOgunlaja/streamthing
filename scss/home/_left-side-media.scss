@@ -8,12 +8,16 @@
       }
     }
   }
+
   @media (width < 850px) {
+    transform: translateY(-20px);
     .slogan {
-      justify-self: center;
+      margin: 0 auto;
     }
     .descriptions-container {
+      margin-bottom: 10px;
       .big-description {
+        width: 100%;
         font-size: 34px;
         text-align: center;
       }
@@ -42,6 +46,11 @@
   }
 
   @media (width < 600px) {
+    .descriptions-container {
+      .small-description {
+        font-size: 17px;
+      }
+    }
     .slogan {
       font-size: 12px;
       padding: 3px 7px;
@@ -67,7 +76,7 @@
         font-size: 32.5px;
       }
       .small-description {
-        font-size: 18.5px;
+        font-size: 16px;
       }
     }
   }
