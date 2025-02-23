@@ -1,6 +1,6 @@
 .page {
   padding: 50px;
-  width: 75vw;
+  width: 49.5vw;
 }
 .page h1 {
   font-size: 45px;
@@ -10,13 +10,11 @@
   color: var(--accent-color-2);
 }
 .page p {
-  font-size: 18.25px;
+  font-size: 18px;
 }
 .page a {
   width: fit-content;
+  margin-left: 0px !important;
   margin-top: 35px;
   font-size: 35px !important;
-}
-.page a img {
-  margin-right: 10px !important;
 }

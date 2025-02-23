@@ -12,12 +12,12 @@ const Page = () => {
       </h1>
       <br />
       <p className={styles["small-description"]}>
-        <Balancer>
-          Streamthing offers lightning fast and effortlessly configurable
-          WebSocket servers tailored to meet your requirements, ensuring swift
-          deployment and seamless performance optimization for your streaming
-          needs.
-        </Balancer>
+        {/* <Balancer> */}
+        Developers deserve better than Pusher. That&apos;s why we created
+        Streamthing, an easier and more cost-effective alternative. Whether
+        you&apos;re creating a chat app or a real-time dashboard,
+        <br /> we&apos;ll meet your needs.
+        {/* </Balancer> */}
       </p>
       <TitleLink />
     </div>
