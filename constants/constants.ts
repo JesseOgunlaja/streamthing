@@ -2,12 +2,10 @@ import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { GenericObject } from "../lib/types";
 
 export const regions = {
-  us3: "US West, California",
   eus: "Frankfurt, Germany",
 } as GenericObject<string>;
 
 export const serversByRegion = {
-  us3: "https://us3.streamthing.dev",
   eus: "https://eus.streamthing.dev",
 } as GenericObject<string>;
 

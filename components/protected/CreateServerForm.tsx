@@ -52,7 +52,6 @@ const CreateServerForm = ({ closeDialog }: PropsType) => {
       />
       <label htmlFor="create-server-region-input">Region</label>
       <select name="new-server-region" id="create-server-region-input">
-        <option value="us3">us3 ({regions.us3})</option>
         <option value="eus">eus ({regions.eus})</option>
       </select>
       <div className={styles.buttons}>
