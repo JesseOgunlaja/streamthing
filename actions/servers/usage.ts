@@ -24,6 +24,7 @@ export async function getUsage(server?: Server) {
     if (!server) {
       const serverData = await Promise.all(
         user.servers.map(async (server) => {
+          console.log(server);
           const URL = `${serversByRegion[server.region]}/get-server/${
             server.id
           }`;
@@ -32,6 +33,7 @@ export async function getUsage(server?: Server) {
               authorization: server.password,
             },
           });
+
           return res.json();
         })
       );

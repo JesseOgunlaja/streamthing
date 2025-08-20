@@ -3,10 +3,14 @@ import { GenericObject } from "../lib/types";
 
 export const regions = {
   eus: "Frankfurt, Germany",
+  usw: "US West, Oregon",
+  us3: "US East, Ohio",
 } as GenericObject<string>;
 
 export const serversByRegion = {
   eus: "https://eus.streamthing.dev",
+  usw: "https://usw.streamthing.dev",
+  us3: "https://us3.streamthing.dev",
 } as GenericObject<string>;
 
 export const KB = 1024;
