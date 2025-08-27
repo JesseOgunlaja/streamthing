@@ -9,10 +9,10 @@ const ServerCode = () => {
 
         // Initialize stream out of route handler for better performance
         const stream = createServerStream({
+          id: process.env.SERVER_ID,
+          region: process.env.SERVER_REGION,
+          password: process.env.SERVER_PASSWORD,
           channel: "main",
-          id: env.SERVER_ID,
-          region: env.SERVER_REGION,
-          password: env.SERVER_PASSWORD,
         });
 
         // Route handler
@@ -20,9 +20,7 @@ const ServerCode = () => {
         const { event, message } = request.body;
 
         const { user } = await auth(request)
-        if(!user) {
-          return response.json({error: "Unauthenticated"}, 401)
-        }
+        if(!user) return response.json({error: "Unauthenticated"}, 401)
 
         await stream.send(event, message);
         return response.json({message: "Success"}, 200)
