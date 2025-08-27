@@ -1,10 +1,6 @@
 "use server";
 
-import {
-  BillingMethod,
-  BillingPlan,
-  stripePricingTokens,
-} from "@/constants/billing";
+import { BillingPlan, stripePricingTokens } from "@/constants/billing";
 import { serversByRegion } from "@/constants/constants";
 import { isSignedIn } from "@/lib/auth";
 import { formatTimestamp } from "@/lib/lib";
@@ -38,17 +34,14 @@ export async function getSubscriptionRenewDate() {
   }
 }
 
-export async function updateSubscriptionPlan(
-  newPlan: BillingPlan,
-  newPlanType: BillingMethod
-) {
+export async function updateSubscriptionPlan(newPlan: BillingPlan) {
   try {
     const access_token = (await cookies()).get("access_token")?.value || "";
     const { user, signedIn } = await isSignedIn(access_token);
     if (!signedIn) return "Unauthorized";
 
     const subscription = await getSubscription(user.stripe_customer_id);
-    const newPlanID = stripePricingTokens[newPlan][newPlanType];
+    const newPlanID = stripePricingTokens[newPlan];
 
     await Promise.all([
       kv.main.json.set(`user-${user.email}`, "$.plan", JSON.stringify(newPlan)),

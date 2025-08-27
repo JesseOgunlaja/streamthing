@@ -17,7 +17,6 @@ const PricingCard = ({
   monthlyPrice,
   limits,
   Logo,
-  annualPrice,
   styles,
   onClick,
   children,
@@ -34,11 +33,6 @@ const PricingCard = ({
         <Balancer>{description}</Balancer>
       </p>
       <p className={styles["pricing-card-price"]}>{monthlyPrice}</p>
-      <p className={`${styles["pricing-card-yearly-price"]}`}>
-        {annualPrice === "0"
-          ? "No credit card required"
-          : `Or £${annualPrice} a year`}
-      </p>
       <div className={styles.features}>
         <p>Includes:</p>
         <div className={styles.feature}>

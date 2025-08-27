@@ -1,19 +1,12 @@
 "use server";
 
-import {
-  BillingMethod,
-  BillingPlan,
-  stripePricingTokens,
-} from "@/constants/billing";
+import { BillingPlan, stripePricingTokens } from "@/constants/billing";
 import { isSignedIn } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { stripeInstance } from "@/lib/stripe";
 import { cookies } from "next/headers";
 
-export async function createCheckoutSession(
-  plan: BillingPlan,
-  type: BillingMethod
-) {
+export async function createCheckoutSession(plan: BillingPlan) {
   const access_token = (await cookies()).get("access_token")?.value || "";
   const { user, signedIn } = await isSignedIn(access_token);
   if (!signedIn) return "Unauthorized";
@@ -23,7 +16,6 @@ export async function createCheckoutSession(
     payment_method_types: ["card"],
     metadata: {
       plan,
-      type,
       email: user.email,
     },
     subscription_data: {
@@ -33,7 +25,7 @@ export async function createCheckoutSession(
     },
     line_items: [
       {
-        price: stripePricingTokens[plan][type],
+        price: stripePricingTokens[plan],
         quantity: 1,
       },
     ],

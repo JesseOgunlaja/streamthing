@@ -1,4 +1,4 @@
-import { FormSubmit, GenericObject, UserType } from "./types";
+import { FormSubmit, UserType } from "./types";
 
 export function getFormValues(e: FormSubmit) {
   const formData = new FormData(e.currentTarget);
@@ -52,11 +52,4 @@ export function findValueByKey<T extends Record<string, any>>(
 
 export function capitalizeFirstLetter(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-export function isPropertyInObject<T extends GenericObject>(
-  obj: T,
-  key: keyof GenericObject
-): key is keyof T {
-  return key in obj;
 }

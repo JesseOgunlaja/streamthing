@@ -1,10 +1,9 @@
 "use server";
 
-import { stripePricingTokens } from "@/constants/billing";
+import { BillingPlan, stripePricingTokens } from "@/constants/billing";
 import { kv } from "@/lib/redis";
 import { stripeInstance } from "@/lib/stripe";
 import { GenericObject } from "@/lib/types";
-import { isPropertyInObject } from "@/lib/utils";
 
 export async function fulfillCheckout(sessionID: string) {
   const lockKey = `lock:checkout:${sessionID}`;
@@ -31,15 +30,12 @@ export async function fulfillCheckout(sessionID: string) {
     if (checkoutSession.payment_status !== "paid") return { ok: false };
 
     const { customer, subscription, metadata } = checkoutSession;
-    const { email, plan, type } = metadata as GenericObject<string>;
+    const { email, plan } = metadata as GenericObject<string>;
 
     const priceID = checkoutSession.line_items?.data[0].price?.id;
 
-    if (!isPropertyInObject(stripePricingTokens, plan)) return { ok: false };
-    if (!isPropertyInObject(stripePricingTokens[plan], type))
-      return { ok: false };
-
-    const expectedPriceID = stripePricingTokens[plan][type];
+    if (!plan || !(plan in stripePricingTokens)) return { ok: false };
+    const expectedPriceID = stripePricingTokens[plan as BillingPlan];
 
     if (priceID !== expectedPriceID) return { ok: false };
 

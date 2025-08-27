@@ -23,7 +23,6 @@ const SubscriptionDetails = () => {
         ) : (
           <div className={styles["subscription-details"]}>
             <p>Plan: {user.plan}</p>
-            <p>Plan type: {stripeData.subscription.planType}</p>
             <p>Renewing: {stripeData.subscription.renewing}</p>
           </div>
         )}

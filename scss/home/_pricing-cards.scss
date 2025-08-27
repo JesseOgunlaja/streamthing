@@ -4,7 +4,7 @@
 
 @mixin pricing-cards($cursor) {
   display: grid;
-  grid-template-columns: repeat(4, min(22%, 375px));
+  grid-template-columns: repeat(3, min(25%, 400px));
   justify-content: center;
   gap: 20px;
   width: 100%;

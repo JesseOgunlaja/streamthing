@@ -21,7 +21,6 @@ interface BaseContext {
 interface StripeData {
   methods: PaymentMethod[];
   subscription: {
-    planType: string;
     renewing: string;
   };
 }

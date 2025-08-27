@@ -37,15 +37,10 @@ export async function getStripeUserData(
     });
 
     const renewing = formatTimestamp(subscription.current_period_end);
-    const planType =
-      subscription.items.data[0].price.recurring?.interval === "month"
-        ? "Monthly"
-        : "Annual";
 
     return {
       methods,
       subscription: {
-        planType: planType,
         renewing,
       },
     };
@@ -53,7 +48,6 @@ export async function getStripeUserData(
     return {
       methods: [],
       subscription: {
-        planType: "N/A",
         renewing: "N/A",
       },
     };
