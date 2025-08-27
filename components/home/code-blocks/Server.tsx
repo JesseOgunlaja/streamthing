@@ -20,7 +20,9 @@ const ServerCode = () => {
         const { event, message } = request.body;
 
         const { user } = await auth(request)
-        if(!user) return response.json({error: "Unauthenticated"}, 401)
+        if(!user) {
+          return response.json({error: "Unauthenticated"}, 401)
+        }
 
         await stream.send(event, message);
         return response.json({message: "Success"}, 200)
