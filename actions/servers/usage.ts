@@ -5,6 +5,7 @@ import { serversByRegion } from "@/constants/constants";
 import { VM_FETCH_CONFIG } from "@/lib/server-utils";
 import { isSignedIn } from "@/lib/auth";
 import { Server, UsageData } from "@/lib/types";
+import { env } from "@/lib/env";
 
 export async function getUsage(server?: Server) {
 	try {
@@ -28,7 +29,11 @@ export async function getUsage(server?: Server) {
 					const URL = `${serversByRegion[server.region]}/get-server/${
 						server.id
 					}`;
-					const res = await fetch(URL, VM_FETCH_CONFIG);
+					const res = await fetch(URL, {
+            headers: {
+              authorization: env.SERVER_ADMIN_PASSWORD
+            }
+          });
 
 					return res.json();
 				}),
