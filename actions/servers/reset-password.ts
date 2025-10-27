@@ -2,7 +2,8 @@
 
 import { cookies } from "next/headers";
 import { after } from "next/server";
-import { serversByRegion, VM_FETCH_CONFIG } from "@/constants/constants";
+import { serversByRegion } from "@/constants/constants";
+import { VM_FETCH_CONFIG } from "@/lib/server-utils";
 import { isSignedIn } from "@/lib/auth";
 import { kv } from "@/lib/redis";
 import { generateRandomString } from "@/lib/utils";

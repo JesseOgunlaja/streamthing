@@ -2,7 +2,8 @@
 
 import { cookies } from "next/headers";
 import { BillingPlan, stripePricingTokens } from "@/constants/billing";
-import { serversByRegion, VM_FETCH_CONFIG } from "@/constants/constants";
+import { serversByRegion } from "@/constants/constants";
+import { VM_FETCH_CONFIG } from "@/lib/server-utils";
 import { isSignedIn } from "@/lib/auth";
 import { formatTimestamp } from "@/lib/lib";
 import { kv } from "@/lib/redis";

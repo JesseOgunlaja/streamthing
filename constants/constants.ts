@@ -1,5 +1,4 @@
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
-import { env } from "@/lib/env";
 import { GenericObject } from "../lib/types";
 
 export const regions = {
@@ -70,10 +69,3 @@ export const protectedPages = [
 	"/update-plan",
 	"/convert-to-paid",
 ];
-
-export const VM_FETCH_CONFIG = {
-	method: "POST",
-	headers: {
-		authorization: env.SERVER_ADMIN_PASSWORD,
-	},
-} satisfies RequestInit;

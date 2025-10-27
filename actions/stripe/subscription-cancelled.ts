@@ -1,6 +1,7 @@
 "use server";
 
-import { serversByRegion, VM_FETCH_CONFIG } from "@/constants/constants";
+import { serversByRegion } from "@/constants/constants";
+import { VM_FETCH_CONFIG } from "@/lib/server-utils";
 import { getUserByEmail, kv } from "@/lib/redis";
 import { StripeTypes } from "@/lib/stripe";
 import { UserType } from "@/lib/types";

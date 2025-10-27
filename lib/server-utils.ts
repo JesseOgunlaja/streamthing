@@ -47,3 +47,9 @@ export async function getIP() {
     "127.0.0.1"
   );
 }
+export const VM_FETCH_CONFIG = {
+  method: "POST",
+  headers: {
+    authorization: env.SERVER_ADMIN_PASSWORD,
+  },
+} satisfies RequestInit;
