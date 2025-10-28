@@ -10,7 +10,7 @@ interface PropsType {
   user: UserType | undefined;
 }
 
-const DesktopNavbar = async ({ signedIn, user }: PropsType) => {
+const DesktopNavbar = ({ signedIn, user }: PropsType) => {
   return (
     <nav className={styles.nav}>
       <ul>
