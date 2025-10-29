@@ -49,17 +49,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutPropsType) {
 	return (
 		<html lang="en">
-			<body className={`${poppins.className}`}>
+			<body className={poppins.className}>
+				<Favicon />
 				<Analytics />
+				<AuthProvider />
 				<SpeedInsights />
-				<BalancerProvider>
 				<ThemeProvider>
 					<ToastProvider />
-					<AuthProvider />
-					<Favicon />
-					{children}
+					<BalancerProvider>{children}</BalancerProvider>
 				</ThemeProvider>
-				</BalancerProvider>
 			</body>
 		</html>
 	);
