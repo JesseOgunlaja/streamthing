@@ -32,7 +32,7 @@ Streamthing is a real-time WebSocket platform for Node.js, designed as a simpler
 
 - 📚 **Documentation**  
   Hand-written docs and API reference available at  
-  **https://docs.streamthing.dev**
+  **[docs.streamthing.dev](https://docs.streamthing.dev)**
 
 ---
 
