@@ -1,18 +1,17 @@
 import CodeBlock from "../CodeBlock";
 
 const ServerCode = () => {
-  return (
-    <CodeBlock
-      fileName="server.ts"
-      code={`
+    return (
+        <CodeBlock
+            fileName="server.ts"
+            code={`
         import { createServerStream } from 'streamthing';
 
         // Initialize stream out of route handler for better performance
-        const stream = createServerStream({
+        const stream = await createServerStream({
           id: process.env.SERVER_ID,
           region: process.env.SERVER_REGION,
           password: process.env.SERVER_PASSWORD,
-          channel: "main",
         });
 
         // Route handler
@@ -23,12 +22,13 @@ const ServerCode = () => {
         if(!user) {
           return response.json({error: "Unauthenticated"}, 401)
         }
+        const channel = user.id // Derive channel form auth
 
-        await stream.send(event, message);
+        await stream.send(channel, event, message);
         return response.json({message: "Success"}, 200)
       `}
-    />
-  );
+        />
+    );
 };
 
 export default ServerCode;
