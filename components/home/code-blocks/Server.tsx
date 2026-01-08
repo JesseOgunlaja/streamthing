@@ -22,7 +22,7 @@ const ServerCode = () => {
         if(!user) {
           return response.json({error: "Unauthenticated"}, 401)
         }
-        const channel = user.id // Derive channel form auth
+        const channel = user.id // Derive channel from user
 
         await stream.send(channel, event, message);
         return response.json({message: "Success"}, 200)
